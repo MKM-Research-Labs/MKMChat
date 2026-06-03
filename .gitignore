@@ -5,8 +5,9 @@
 /data/*
 !/data/__init__.py
 
-# Local secrets — never commit real API keys
-config_secrets.py
+# Local secrets — never commit real API keys.
+# API keys live in data/config_key.py on the external SSD (data/ is a
+# symlink whose contents are never tracked). .env is a fallback.
 .env
 
 # Editor config (may contain extension API keys)

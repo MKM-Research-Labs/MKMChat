@@ -20,20 +20,32 @@ Provides consistent path handling and configuration across all modules.
 """
 
 import os
+import importlib.util
 from pathlib import Path
 from typing import Dict, Any
 
 # =============================================================================
 # API KEYS
 # =============================================================================
-# Secrets are never committed. They are read from an untracked local
-# config_secrets.py (gitignored) if present, otherwise from environment
-# variables. See config_secrets.py.example for the expected format.
-try:
-    from config_secrets import ANTHROPIC_API_KEY, PERPLEXITY_API_KEY
-except ImportError:
-    ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-    PERPLEXITY_API_KEY = os.environ.get("PERPLEXITY_API_KEY", "")
+# Secrets are never committed. They live in data/config_key.py, which sits on
+# the external SSD (data/ is a symlink whose contents git never tracks). If the
+# SSD is not mounted, fall back to environment variables.
+def _load_api_keys():
+    key_file = Path(__file__).parent / "data" / "config_key.py"
+    if key_file.exists():
+        spec = importlib.util.spec_from_file_location("config_key", key_file)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return (
+            getattr(module, "ANTHROPIC_API_KEY", ""),
+            getattr(module, "PERPLEXITY_API_KEY", ""),
+        )
+    return (
+        os.environ.get("ANTHROPIC_API_KEY", ""),
+        os.environ.get("PERPLEXITY_API_KEY", ""),
+    )
+
+ANTHROPIC_API_KEY, PERPLEXITY_API_KEY = _load_api_keys()
 
 # =============================================================================
 # API URLs
