@@ -1,0 +1,735 @@
+[LOG] Output being saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260207_132755.log
+
+======================================================================
+MKM RESEARCH TEST SUITE
+Started: 2026-02-07 13:27:55
+Pattern: test_*.py
+======================================================================
+
+============================================================
+API COMPARISON TEST
+============================================================
+
+[ANTHROPIC] Testing...
+  [OK] 2.30s
+
+[PERPLEXITY] Testing...
+  [OK] 1.85s
+
+[LM STUDIO] Testing...
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: \n\nQuestion: In one sentence, what is machine learning?'}], 'temperature': 0.7, 'max_tokens': 1000}
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  [OK] 0.03s
+
+============================================================
+RESULTS COMPARISON
+============================================================
+
+Anthropic (Claude):
+  Status: SUCCESS
+  Time: 2.30s
+  Response: Machine learning is a branch of artificial intelligence where computers learn patterns from data to make predictions or decisions without being explic...
+
+Perplexity (Sonar):
+  Status: SUCCESS
+  Time: 1.85s
+  Response: **Machine learning is a subfield of artificial intelligence that enables computers to learn and improve from data using algorithms, without requiring ...
+
+LM Studio (DeepSeek):
+  Status: SUCCESS
+  Time: 0.03s
+  Response: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load...
+
+[SUMMARY] 3/3 APIs working
+
+============================================================
+ANTHROPIC API TEST
+============================================================
+API URL: https://api.anthropic.com/v1/messages
+API Key: SET (length: 108)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (sk-ant-...)
+
+[TEST] Checking handler instantiation...
+[OK] AnthropicHandler instantiated
+
+[TEST] Making API call to Claude Sonnet...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 1.60s
+[OK] Got response (1 chars)
+[RESPONSE] 4...
+[OK] Response appears correct (contains '4')
+
+============================================================
+LM STUDIO API TEST
+============================================================
+API URL: http://localhost:1234/v1/chat/completions
+
+[TEST] Checking LM Studio connectivity...
+[OK] LM Studio is reachable
+[INFO] Available models: 5
+  - text-embedding-nomic-embed-text-v1.5
+  - bitnet-b1.58-2b-4t
+  - cogito-v1-preview-llama-3b
+  - deepseek-r1-distill-qwen-1.5b
+  - mistral-7b-instruct-v0.2
+
+[TEST] Making API call to DeepSeek...
+Query: 'What is 2+2? Reply with just the number.'
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: This is a simple math test.\n\nQuestion: What is 2+2? Reply with just the number.'}], 'temperature': 0.7, 'max_tokens': 1000}
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+[TIME] Response time: 0.01s
+[OK] Got response (228 chars)
+[RESPONSE] Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}...
+
+============================================================
+PERPLEXITY API TEST
+============================================================
+API URL: https://api.perplexity.ai/chat/completions
+API Key: SET (length: 53)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (pplx-...)
+
+[TEST] Checking handler instantiation...
+[OK] PerplexityHandler instantiated
+
+[TEST] Making API call to Sonar Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 1.93s
+[OK] Got response (386 chars)
+[RESPONSE] **4**[1][5]
+
+The search results confirm that in standard arithmetic, **2 + 2 = 4**, as explicitly stated in multiple sources despite some containing irrelevant or incorrect answers like 2, 56, or 6.33...
+[OK] Response appears correct (contains '4')
+
+[TEST] Making API call to Sonar Reasoning Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 4.16s
+[OK] Got response (7 chars)
+[RESPONSE] 4[1][5]...
+
+[INFO] Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Using model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[OK] Model is valid
+
+============================================================
+TEST: Initial State
+============================================================
+[API] Current chat count: 631
+[FILE] Current chat count: 631
+
+============================================================
+TEST: Normal Query with Deepseek
+============================================================
+[QUERY] Sending to /query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+============================================================
+Processing query: What is clean architecture?
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 3227 characters
+Calling model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+Response generated: 228 characters
+[TIME] Query took 0.38s
+[STATUS] Response: 200
+[OK] Got response (228 chars)
+[OK] Sources: 5
+[OK] Knowledge base: misc
+
+============================================================
+TEST: Save Normal Chat
+============================================================
+[INFO] Initial chat count: 631
+[SAVE] Saving chat with ID: test_normal_20260207_132844
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'knowledge_base', 'messages', 'model', 'sources', 'timestamp', 'title', 'type']
+Attempting to save chat with ID: test_normal_20260207_132844
+Chat created: test_normal_20260207_132844
+Successfully saved chat: test_normal_20260207_132844
+[OK] Chat saved successfully
+[INFO] New chat count: 632
+[OK] Verified chat exists in all_chats.json
+
+============================================================
+TEST: Research Query with Deepseek
+============================================================
+[QUERY] Sending to /research_query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[INFO] This queries ALL knowledge bases - may take a while...
+
+============================================================
+RESEARCH QUERY (Streaming): What is clean architecture?...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc
+============================================================
+
+[1/1] Querying misc...
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Miscellaneous: 20 docs, 15ms
+
+Synthesizing responses from 1 knowledge bases...
+
+============================================================
+Research complete: 0 total sources, 15ms
+============================================================
+
+[TIME] Research query took 0.02s
+[STATUS] Response: 200
+[OK] Got synthesized answer (173 chars)
+[OK] Total sources: 0
+[OK] KB results: 1
+      Miscellaneous: 20 docs
+
+============================================================
+TEST: Save Research Chat
+============================================================
+[INFO] Initial chat count: 632
+[SAVE] Saving research chat with ID: test_research_20260207_132844
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_research_20260207_132844
+Chat created: test_research_20260207_132844
+Successfully saved chat: test_research_20260207_132844
+[OK] Research chat saved successfully
+[INFO] New chat count: 633
+[OK] Verified research chat exists in all_chats.json
+[OK] Chat type correctly saved as 'research'
+
+============================================================
+TEST: Final Verification
+============================================================
+[INFO] Total chats in file: 633
+
+[FOUND] 2 test chats:
+  - normal: test_normal_20260207_132844
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Normal Chat - What is clean archite...
+  - research: test_research_20260207_132844
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Research Chat - What is clean archi...
+
+[OK] All test chats verified in all_chats.json
+
+[CLEANUP] Removing 2 test chats...
+Chat deleted: test_normal_20260207_132844
+  Deleted: test_normal_20260207_132844
+Chat deleted: test_research_20260207_132844
+  Deleted: test_research_20260207_132844
+
+============================================================
+TEST: ChatService Direct Test
+============================================================
+[INFO] Initial chat count: 631
+Chat created: direct_test_20260207_132845
+[OK] Saved chat: direct_test_20260207_132845
+[OK] Chat count increased: 631 -> 632
+[OK] Retrieved chat by ID
+Chat deleted: direct_test_20260207_132845
+[OK] Deleted test chat
+[OK] Chat count restored: 631
+
+======================================================================
+DEEP RESEARCH FUNCTION TEST
+======================================================================
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+Chats File: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+======================================================================
+
+======================================================================
+STEP 1: Execute Deep Research Query
+======================================================================
+
+[QUERY] 'MKM Research Labs, David Kelly and Johnny Mattimore'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[KBs] Querying ALL 7 knowledge bases...
+
+This will take some time as each KB is queried sequentially.
+
+
+============================================================
+RESEARCH QUERY (Streaming): MKM Research Labs, David Kelly and Johnny Mattimor...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+============================================================
+
+[1/7] Querying misc...
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Miscellaneous: 20 docs, 83ms
+[2/7] Querying phys...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/phys
+Successfully loaded and cached index: phys
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Physical: 20 docs, 4277ms
+[3/7] Querying pops...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/pops
+Successfully loaded and cached index: pops
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Parenting: 20 docs, 542ms
+[4/7] Querying hist...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/hist
+Successfully loaded and cached index: hist
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ History: 20 docs, 379ms
+[5/7] Querying mods...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/mods
+Successfully loaded and cached index: mods
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Models: 20 docs, 4441ms
+[6/7] Querying corp...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/corp
+Successfully loaded and cached index: corp
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Corporate: 20 docs, 3311ms
+[7/7] Querying back...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/back
+Successfully loaded and cached index: back
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ backgammon: 20 docs, 242ms
+
+Synthesizing responses from 7 knowledge bases...
+
+============================================================
+Research complete: 0 total sources, 13279ms
+============================================================
+
+
+[TIME] Total research time: 13.28s
+[STATUS] Response code: 200
+
+[OK] Research query completed successfully
+[INFO] Total sources found: 0
+[INFO] Total time (reported): 13279ms
+
+======================================================================
+STEP 2: Analyze Individual Knowledge Base Results
+======================================================================
+
+[INFO] Received results from 7 knowledge bases
+
+------------------------------------------------------------
+KB 1/7: Miscellaneous (misc)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 2/7: Physical (phys)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 3/7: Parenting (pops)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 4/7: History (hist)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 5/7: Models (mods)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 6/7: Corporate (corp)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 7/7: backgammon (back)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+============================================================
+KB RESULTS SUMMARY
+============================================================
+  Successful (with results): 0
+  No relevant documents: 0
+  Failed: 7
+    misc, phys, pops, hist, mods, corp, back
+
+======================================================================
+STEP 3: Analyze Synthesized Answer
+======================================================================
+
+[INFO] Synthesized answer length: 173 chars
+
+------------------------------------------------------------
+SYNTHESIZED ANSWER:
+------------------------------------------------------------
+No relevant information was found across any of the knowledge bases for this query. Please try rephrasing your question or check if the relevant documents have been indexed.
+------------------------------------------------------------
+
+[INFO] Query terms found in synthesis: []
+
+======================================================================
+STEP 4: Save Complete Research to all_chats.json
+======================================================================
+
+[INFO] Initial chat count: 631
+
+[SAVE] Saving chat with ID: test_deep_research_20260207_132903
+[INFO] Messages in chat: 2
+[INFO] KB results stored: 7
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'query', 'success', 'synthesized_answer', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_deep_research_20260207_132903
+Chat created: test_deep_research_20260207_132903
+Successfully saved chat: test_deep_research_20260207_132903
+[OK] Chat saved successfully
+[INFO] New chat count: 632
+
+======================================================================
+STEP 5: Verify Chat Data in all_chats.json
+======================================================================
+
+[FILE] Reading: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Total chats in file: 632
+[OK] Found test chat: test_deep_research_20260207_132903
+
+[VERIFY] Chat structure:
+  - type: deep_research
+  - model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+  - query: MKM Research Labs, David Kelly and Johnny Mattimor...
+  - messages: 2
+    - user messages: 1
+    - synthesis messages: 1
+    - KB result messages: 0
+  - kb_results array: 7 entries
+  - synthesized_answer: 173 chars
+  - total_sources: 0
+  - total_time_ms: 13279
+
+[OK] All chat data verified in all_chats.json
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+Results:
+  - Knowledge bases queried: 7
+  - Total sources found: 0
+  - Total time: 13279ms
+  - KBs with results: 0
+
+Chat Persistence:
+  - Chat ID: test_deep_research_20260207_132903
+  - Saved to: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+  - Contains: synthesized answer + individual KB results
+
+Output Files:
+  - JSON results: tests/results/deep_research_*.json
+  - Test log: tests/results/test_run_deep_research_*.log
+
+======================================================================
+[OK] DEEP RESEARCH TEST COMPLETE
+======================================================================
+
+Note: Test chat is PRESERVED in all_chats.json for review.
+
+[SAVED] Research results saved to: /Users/newdavid/Documents/MKMChat/tests/results/deep_research_20260207_132904.json
+
+[KEPT] Test chat preserved in all_chats.json: test_deep_research_20260207_132903
+       To delete manually, use: DELETE /delete_chat/{chat_id}
+
+============================================================
+CHECKING CONFIGURATION FILES
+============================================================
+ Static directory: /Users/newdavid/Documents/MKMChat/static
+ Templates directory: /Users/newdavid/Documents/MKMChat/templates
+ Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+
+Collection Summary Files:
+   misc: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+   phys: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_phys.json
+   pops: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_pops.json
+   hist: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_hist.json
+   mods: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_mods.json
+   corp: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_corp.json
+   back: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_back.json
+
+============================================================
+CHECKING FAISS INDICES
+============================================================
+ misc (Miscellaneous): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/misc
+ phys (Physical): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/phys
+ pops (Parenting): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/pops
+ hist (History): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/hist
+ mods (Models): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/mods
+ corp (Corporate): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/corp
+ back (backgammon): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/back
+
+============================================================
+CHECKING API KEYS
+============================================================
+ Anthropic API key set (length: 108)
+ Perplexity API key set (length: 53)
+
+============================================================
+CHECKING LM STUDIO CONNECTION
+============================================================
+URL: http://localhost:1234/v1/chat/completions
+ LM Studio is running and reachable
+   Available models: 5
+     - text-embedding-nomic-embed-text-v1.5
+     - bitnet-b1.58-2b-4t
+     - cogito-v1-preview-llama-3b
+
+============================================================
+TESTING VECTOR STORE QUERY
+============================================================
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+ Vector store loaded
+ Query returned 2 documents
+   First result source: Clean Architecture (Robert C. Martin).pdf
+
+============================================================
+SIMULATING FULL QUERY FLOW
+============================================================
+
+Steps passed:
+  App instantiation
+  Vector store loaded
+  Similarity search (2 results)
+  Local model handler ready
+
+ All steps passed!
+   If you still get 500 errors, the issue is likely:
+   - LM Studio not running (for local models)
+   - API key invalid (for cloud models)
+   - Network connectivity issues
+
+============================================================
+ENDPOINT DIAGNOSTICS
+============================================================
+ GET /: 200
+ GET /get_available_indices: 200
+ GET /get_available_models: 200
+ GET /get_chat_history: 200
+[DEBUG] get_summaries called with docs_type: misc
+[DEBUG] All query params: {'docs_type': 'misc'}
+[DEBUG] Available collections: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+[DEBUG] Loading summaries from: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+[SUCCESS] Loaded 73 summaries for misc
+ GET /get_summaries?docs_type=misc: 200
+
+============================================================
+Processing query: test
+Model: mistral-7b-instruct-v0.2
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 8769 characters
+Calling model: mistral-7b-instruct-v0.2
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+Response generated: 228 characters
+ POST /query: 200
+ POST /switch_index: 200
+ POST /analyze_sources: 200
+No supported files found in /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpjts9kwbt/docs.
+Supported formats: .pdf, .epub, .docx, .doc, .pptx, .ppt, .xlsx, .xls
+
+Processing test.pdf from misc...
+Generated 1 chunks from test.pdf
+Setting up alternative embedding model...
+Successfully set up alternative embeddings
+No error files found in /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpc_85cafs/processed.json
+
+Running diagnostics on 1 problematic files...
+Diagnosing file1.pdf...
+  Assessment: problematic
+  Issues: encoding
+  Recommendation: ocr
+
+Diagnostic report saved to /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmphke0x9ez/pdf_diagnostic_report_misc.json
+Directory not found: /nonexistent/dir
+Error parsing JSON file /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpy1k_ou54/invalid.json: Expecting value: line 1 column 1 (char 0)
+Error processing Word document /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpytblt8cc/test.docx: File is not a zip file
+Primary PDF loading method failed: File path /nonexistent/file.pdf is not a valid file or url
+Attempting first fallback method with PyPDF2...
+First fallback method failed: [Errno 2] No such file or directory: '/nonexistent/file.pdf'
+Attempting second fallback method with pdfplumber...
+Second fallback method failed: [Errno 2] No such file or directory: '/nonexistent/file.pdf'
+Attempting binary-safe extraction method...
+Binary-safe extraction completely failed: [Errno 2] No such file or directory: '/nonexistent/file.pdf'
+Attempting OCR fallback with pdf2image and pytesseract...
+OCR extraction failed: Unable to get page count.
+I/O Error: Couldn't open file '/nonexistent/file.pdf': No such file or directory.
+
+Primary PDF loading method failed: Stream has ended unexpectedly
+Attempting first fallback method with PyPDF2...
+First fallback method failed: EOF marker not found
+Attempting second fallback method with pdfplumber...
+Second fallback method failed: No /Root object! - Is this really a PDF?
+Attempting binary-safe extraction method...
+Binary-safe extraction completely failed: EOF marker not found
+Attempting OCR fallback with pdf2image and pytesseract...
+OCR extraction failed: Unable to get page count.
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't read xref table
+
+Error processing Excel document /nonexistent/file.xlsx: [Errno 2] No such file or directory: '/nonexistent/file.xlsx'
+Error processing EPUB file: [Errno 2] No such file or directory: '/nonexistent/file.epub'
+Error processing PowerPoint document /nonexistent/file.pptx: Package not found at '/nonexistent/file.pptx'
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+LM Studio error: 500 - Internal Server Error
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+
+[OK] Chats directory exists: /Users/newdavid/Documents/MKMChat/src/json
+
+[OK] Generated embedding with 384 dimensions
+
+[INFO] Loading embedding model: all-MiniLM-L6-v2
+[OK] Embedding model loaded successfully
+
+[INFO] Available indices: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+
+[EXISTS] Index 'misc': /Users/newdavid/Documents/MKMChat/faiss/misc
+
+[EXISTS] Index 'phys': /Users/newdavid/Documents/MKMChat/faiss/phys
+
+[EXISTS] Index 'pops': /Users/newdavid/Documents/MKMChat/faiss/pops
+
+[EXISTS] Index 'hist': /Users/newdavid/Documents/MKMChat/faiss/hist
+
+[EXISTS] Index 'mods': /Users/newdavid/Documents/MKMChat/faiss/mods
+
+[EXISTS] Index 'corp': /Users/newdavid/Documents/MKMChat/faiss/corp
+
+[EXISTS] Index 'back': /Users/newdavid/Documents/MKMChat/faiss/back
+
+[OK] Anthropic API key configured (length: 108)
+
+[OK] LM Studio is reachable
+
+[INFO] LM Studio URL: http://localhost:1234/v1/chat/completions
+
+[OK] Perplexity API key configured (length: 53)
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+
+[OK] Default index 'misc' loaded successfully
+Created empty file: /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpv9mpsb6w/new_file.json
+
+[TEST] Selenium availability...
+  [OK] Selenium is installed
+
+[TEST] Flask server running...
+  [FAIL] Server not running at http://localhost:5000
+         Start with: python run.py -web-only
+
+[TEST] WebDriver Manager availability...
+  [OK] webdriver-manager is installed
+
+======================================================================
+TEST SUMMARY
+======================================================================
+Tests run: 237
+Failures: 0
+Errors: 0
+Skipped: 6
+Time elapsed: 197.98s
+======================================================================
+✅ ALL TESTS PASSED
+
+======================================================================
+JAVASCRIPT TEST SUITE (Jest)
+Started: 2026-02-07 13:31:18
+======================================================================
+
+> mkmchat@1.0.0 test
+> jest --silent
+
+
+
+----------------------------------------------------------------------
+JAVASCRIPT TEST SUMMARY
+----------------------------------------------------------------------
+Test Suites: 13
+Tests passed: 127
+Tests failed: 0
+Time elapsed: 18.39s
+----------------------------------------------------------------------
+✅ ALL JAVASCRIPT TESTS PASSED
+
+[LOG] Test output saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260207_132755.log

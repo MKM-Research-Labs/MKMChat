@@ -1,0 +1,127 @@
+[LOG] Output being saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_api_connections_20260204_200404.log
+
+Running tests matching: test_api_connections*.py
+======================================================================
+MKM RESEARCH TEST SUITE
+Started: 2026-02-04 20:04:04
+Pattern: test_api_connections*.py
+======================================================================
+
+============================================================
+API COMPARISON TEST
+============================================================
+
+[ANTHROPIC] Testing...
+  [OK] 1.83s
+
+[PERPLEXITY] Testing...
+  [OK] 2.18s
+
+[LM STUDIO] Testing...
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: \n\nQuestion: In one sentence, what is machine learning?'}], 'temperature': 0.7, 'max_tokens': 1000}
+  [OK] 8.66s
+
+============================================================
+RESULTS COMPARISON
+============================================================
+
+Anthropic (Claude):
+  Status: SUCCESS
+  Time: 1.83s
+  Response: Machine learning is a branch of artificial intelligence where computers learn patterns from data to make predictions or decisions without being explic...
+
+Perplexity (Sonar):
+  Status: SUCCESS
+  Time: 2.18s
+  Response: **Machine learning is a subset of artificial intelligence that enables computers to learn and make predictions or decisions from data using algorithms...
+
+LM Studio (DeepSeek):
+  Status: SUCCESS
+  Time: 8.66s
+  Response: <think>
+Okay, so I need to figure out what machine learning is in just one sentence. Let me start by recalling what I know about machine learning. Fro...
+
+[SUMMARY] 3/3 APIs working
+
+============================================================
+ANTHROPIC API TEST
+============================================================
+API URL: https://api.anthropic.com/v1/messages
+API Key: SET (length: 108)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (sk-ant-...)
+
+[TEST] Checking handler instantiation...
+[OK] AnthropicHandler instantiated
+
+[TEST] Making API call to Claude Sonnet...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 1.09s
+[OK] Got response (1 chars)
+[RESPONSE] 4...
+[OK] Response appears correct (contains '4')
+
+============================================================
+LM STUDIO API TEST
+============================================================
+API URL: http://localhost:1234/v1/chat/completions
+
+[TEST] Checking LM Studio connectivity...
+[OK] LM Studio is reachable
+[INFO] Available models: 5
+  - deepseek-r1-distill-qwen-1.5b
+  - text-embedding-nomic-embed-text-v1.5
+  - bitnet-b1.58-2b-4t
+  - cogito-v1-preview-llama-3b
+  - mistral-7b-instruct-v0.2
+
+[TEST] Making API call to DeepSeek...
+Query: 'What is 2+2? Reply with just the number.'
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: This is a simple math test.\n\nQuestion: What is 2+2? Reply with just the number.'}], 'temperature': 0.7, 'max_tokens': 1000}
+[TIME] Response time: 10.72s
+[OK] Got response (2720 chars)
+[RESPONSE] <think>
+Okay, so I need to figure out what 2 plus 2 is and respond with just the number. Alright, let's start by understanding the problem. It seems straightforward, but since it's a math test question, maybe I should double-check my answer.
+
+First, I'll write down the equation: 2 + 2. Now, adding t...
+
+============================================================
+PERPLEXITY API TEST
+============================================================
+API URL: https://api.perplexity.ai/chat/completions
+API Key: SET (length: 53)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (pplx-...)
+
+[TEST] Checking handler instantiation...
+[OK] PerplexityHandler instantiated
+
+[TEST] Making API call to Sonar Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 2.34s
+[OK] Got response (312 chars)
+[RESPONSE] **4**
+
+In basic arithmetic, 2 + 2 equals 4, as confirmed by standard mathematical principles stated in the search results.[1] While the results include various misleading or incorrect answers (e.g., 2...
+[OK] Response appears correct (contains '4')
+
+[TEST] Making API call to Sonar Reasoning Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 3.40s
+[OK] Got response (4 chars)
+[RESPONSE] 4[1]...
+
+======================================================================
+TEST SUMMARY
+======================================================================
+Tests run: 10
+Failures: 0
+Errors: 0
+Skipped: 0
+Time elapsed: 31.12s
+======================================================================
+✅ ALL TESTS PASSED
+
+[LOG] Test output saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_api_connections_20260204_200404.log

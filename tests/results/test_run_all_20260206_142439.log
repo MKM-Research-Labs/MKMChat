@@ -1,0 +1,21 @@
+[LOG] Output being saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260206_142439.log
+
+Running quick smoke tests...
+======================================================================
+MKM RESEARCH TEST SUITE
+Started: 2026-02-06 14:24:39
+Pattern: test_smoke*.py
+======================================================================
+
+======================================================================
+TEST SUMMARY
+======================================================================
+Tests run: 21
+Failures: 0
+Errors: 0
+Skipped: 0
+Time elapsed: 35.48s
+======================================================================
+✅ ALL TESTS PASSED
+
+[LOG] Test output saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260206_142439.log

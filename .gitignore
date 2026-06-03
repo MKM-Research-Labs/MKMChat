@@ -1,0 +1,13 @@
+# Data lives on an external SSD; `data` is a symlink to
+# /Volumes/David SSD/Docs/MKMChat/data. Git tracks only the symlink.
+# These entries are defensive: if the symlink is ever replaced by a
+# real directory, its contents must not be committed back into the repo.
+/data/*
+!/data/__init__.py
+
+# Local secrets — never commit real API keys
+config_secrets.py
+.env
+
+# Editor config (may contain extension API keys)
+.vscode/

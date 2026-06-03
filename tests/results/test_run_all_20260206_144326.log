@@ -1,0 +1,1395 @@
+[LOG] Output being saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260206_144326.log
+
+======================================================================
+MKM RESEARCH TEST SUITE
+Started: 2026-02-06 14:43:26
+Pattern: test_*.py
+======================================================================
+
+============================================================
+API COMPARISON TEST
+============================================================
+
+[ANTHROPIC] Testing...
+  [OK] 1.77s
+
+[PERPLEXITY] Testing...
+  [OK] 2.40s
+
+[LM STUDIO] Testing...
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: \n\nQuestion: In one sentence, what is machine learning?'}], 'temperature': 0.7, 'max_tokens': 1000}
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  [OK] 0.04s
+
+============================================================
+RESULTS COMPARISON
+============================================================
+
+Anthropic (Claude):
+  Status: SUCCESS
+  Time: 1.77s
+  Response: Machine learning is a branch of artificial intelligence where computers learn patterns from data to make predictions or decisions without being explic...
+
+Perplexity (Sonar):
+  Status: SUCCESS
+  Time: 2.40s
+  Response: **Machine learning is a subfield of artificial intelligence that enables computers to learn and improve from data using algorithms, without requiring ...
+
+LM Studio (DeepSeek):
+  Status: SUCCESS
+  Time: 0.04s
+  Response: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load...
+
+[SUMMARY] 3/3 APIs working
+
+============================================================
+ANTHROPIC API TEST
+============================================================
+API URL: https://api.anthropic.com/v1/messages
+API Key: SET (length: 108)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (sk-ant-...)
+
+[TEST] Checking handler instantiation...
+[OK] AnthropicHandler instantiated
+
+[TEST] Making API call to Claude Sonnet...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 1.44s
+[OK] Got response (1 chars)
+[RESPONSE] 4...
+[OK] Response appears correct (contains '4')
+
+============================================================
+LM STUDIO API TEST
+============================================================
+API URL: http://localhost:1234/v1/chat/completions
+
+[TEST] Checking LM Studio connectivity...
+[OK] LM Studio is reachable
+[INFO] Available models: 5
+  - text-embedding-nomic-embed-text-v1.5
+  - bitnet-b1.58-2b-4t
+  - cogito-v1-preview-llama-3b
+  - deepseek-r1-distill-qwen-1.5b
+  - mistral-7b-instruct-v0.2
+
+[TEST] Making API call to DeepSeek...
+Query: 'What is 2+2? Reply with just the number.'
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: This is a simple math test.\n\nQuestion: What is 2+2? Reply with just the number.'}], 'temperature': 0.7, 'max_tokens': 1000}
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+[TIME] Response time: 0.00s
+[OK] Got response (228 chars)
+[RESPONSE] Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}...
+
+============================================================
+PERPLEXITY API TEST
+============================================================
+API URL: https://api.perplexity.ai/chat/completions
+API Key: SET (length: 53)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (pplx-...)
+
+[TEST] Checking handler instantiation...
+[OK] PerplexityHandler instantiated
+
+[TEST] Making API call to Sonar Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 2.23s
+[OK] Got response (293 chars)
+[RESPONSE] **4**
+
+In basic arithmetic, 2 + 2 equals 4, as confirmed by standard mathematical principles.[1][6] While search result [1] includes various incorrect or speculative answers (e.g., 2, 56, or 0 from mi...
+[OK] Response appears correct (contains '4')
+
+[TEST] Making API call to Sonar Reasoning Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 8.30s
+[OK] Got response (1 chars)
+[RESPONSE] 4...
+
+[INFO] Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Using model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[OK] Model is valid
+
+============================================================
+TEST: Initial State
+============================================================
+[API] Current chat count: 630
+[FILE] Current chat count: 630
+
+============================================================
+TEST: Normal Query with Deepseek
+============================================================
+[QUERY] Sending to /query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+============================================================
+Processing query: What is clean architecture?
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 3227 characters
+Calling model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+Response generated: 228 characters
+[TIME] Query took 0.32s
+[STATUS] Response: 200
+[OK] Got response (228 chars)
+[OK] Sources: 5
+[OK] Knowledge base: misc
+
+============================================================
+TEST: Save Normal Chat
+============================================================
+[INFO] Initial chat count: 630
+[SAVE] Saving chat with ID: test_normal_20260206_144415
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'knowledge_base', 'messages', 'model', 'sources', 'timestamp', 'title', 'type']
+Attempting to save chat with ID: test_normal_20260206_144415
+Chat created: test_normal_20260206_144415
+Successfully saved chat: test_normal_20260206_144415
+[OK] Chat saved successfully
+[INFO] New chat count: 631
+[OK] Verified chat exists in all_chats.json
+
+============================================================
+TEST: Research Query with Deepseek
+============================================================
+[QUERY] Sending to /research_query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[INFO] This queries ALL knowledge bases - may take a while...
+
+============================================================
+RESEARCH QUERY (Streaming): What is clean architecture?...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc
+============================================================
+
+[1/1] Querying misc...
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Miscellaneous: 20 docs, 11ms
+
+Synthesizing responses from 1 knowledge bases...
+
+============================================================
+Research complete: 0 total sources, 11ms
+============================================================
+
+[TIME] Research query took 0.01s
+[STATUS] Response: 200
+[OK] Got synthesized answer (173 chars)
+[OK] Total sources: 0
+[OK] KB results: 1
+      Miscellaneous: 20 docs
+
+============================================================
+TEST: Save Research Chat
+============================================================
+[INFO] Initial chat count: 631
+[SAVE] Saving research chat with ID: test_research_20260206_144416
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_research_20260206_144416
+Chat created: test_research_20260206_144416
+Successfully saved chat: test_research_20260206_144416
+[OK] Research chat saved successfully
+[INFO] New chat count: 632
+[OK] Verified research chat exists in all_chats.json
+[OK] Chat type correctly saved as 'research'
+
+============================================================
+TEST: Final Verification
+============================================================
+[INFO] Total chats in file: 632
+
+[FOUND] 2 test chats:
+  - normal: test_normal_20260206_144415
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Normal Chat - What is clean archite...
+  - research: test_research_20260206_144416
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Research Chat - What is clean archi...
+
+[OK] All test chats verified in all_chats.json
+
+[CLEANUP] Removing 2 test chats...
+Chat deleted: test_normal_20260206_144415
+  Deleted: test_normal_20260206_144415
+Chat deleted: test_research_20260206_144416
+  Deleted: test_research_20260206_144416
+
+============================================================
+TEST: ChatService Direct Test
+============================================================
+[INFO] Initial chat count: 630
+Chat created: direct_test_20260206_144416
+[OK] Saved chat: direct_test_20260206_144416
+[OK] Chat count increased: 630 -> 631
+[OK] Retrieved chat by ID
+Chat deleted: direct_test_20260206_144416
+[OK] Deleted test chat
+[OK] Chat count restored: 630
+
+======================================================================
+DEEP RESEARCH FUNCTION TEST
+======================================================================
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+Chats File: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+======================================================================
+
+======================================================================
+STEP 1: Execute Deep Research Query
+======================================================================
+
+[QUERY] 'MKM Research Labs, David Kelly and Johnny Mattimore'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[KBs] Querying ALL 7 knowledge bases...
+
+This will take some time as each KB is queried sequentially.
+
+
+============================================================
+RESEARCH QUERY (Streaming): MKM Research Labs, David Kelly and Johnny Mattimor...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+============================================================
+
+[1/7] Querying misc...
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Miscellaneous: 20 docs, 81ms
+[2/7] Querying phys...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/phys
+Successfully loaded and cached index: phys
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Physical: 20 docs, 7098ms
+[3/7] Querying pops...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/pops
+Successfully loaded and cached index: pops
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Parenting: 20 docs, 985ms
+[4/7] Querying hist...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/hist
+Successfully loaded and cached index: hist
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ History: 20 docs, 245ms
+[5/7] Querying mods...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/mods
+Successfully loaded and cached index: mods
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Models: 20 docs, 6584ms
+[6/7] Querying corp...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/corp
+Successfully loaded and cached index: corp
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ Corporate: 20 docs, 6252ms
+[7/7] Querying back...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/back
+Successfully loaded and cached index: back
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+  Model response type: <class 'str'>
+  Model response length: 228
+  Model response preview: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load ...
+  ✗ backgammon: 20 docs, 275ms
+
+Synthesizing responses from 7 knowledge bases...
+
+============================================================
+Research complete: 0 total sources, 21532ms
+============================================================
+
+
+[TIME] Total research time: 21.55s
+[STATUS] Response code: 200
+
+[OK] Research query completed successfully
+[INFO] Total sources found: 0
+[INFO] Total time (reported): 21532ms
+
+======================================================================
+STEP 2: Analyze Individual Knowledge Base Results
+======================================================================
+
+[INFO] Received results from 7 knowledge bases
+
+------------------------------------------------------------
+KB 1/7: Miscellaneous (misc)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 2/7: Physical (phys)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 3/7: Parenting (pops)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 4/7: History (hist)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 5/7: Models (mods)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 6/7: Corporate (corp)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+------------------------------------------------------------
+KB 7/7: backgammon (back)
+------------------------------------------------------------
+  Status: FAILED
+  Error: Error from local model: LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+
+============================================================
+KB RESULTS SUMMARY
+============================================================
+  Successful (with results): 0
+  No relevant documents: 0
+  Failed: 7
+    misc, phys, pops, hist, mods, corp, back
+
+======================================================================
+STEP 3: Analyze Synthesized Answer
+======================================================================
+
+[INFO] Synthesized answer length: 173 chars
+
+------------------------------------------------------------
+SYNTHESIZED ANSWER:
+------------------------------------------------------------
+No relevant information was found across any of the knowledge bases for this query. Please try rephrasing your question or check if the relevant documents have been indexed.
+------------------------------------------------------------
+
+[INFO] Query terms found in synthesis: []
+
+======================================================================
+STEP 4: Save Complete Research to all_chats.json
+======================================================================
+
+[INFO] Initial chat count: 630
+
+[SAVE] Saving chat with ID: test_deep_research_20260206_144443
+[INFO] Messages in chat: 2
+[INFO] KB results stored: 7
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'query', 'success', 'synthesized_answer', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_deep_research_20260206_144443
+Chat created: test_deep_research_20260206_144443
+Successfully saved chat: test_deep_research_20260206_144443
+[OK] Chat saved successfully
+[INFO] New chat count: 631
+
+======================================================================
+STEP 5: Verify Chat Data in all_chats.json
+======================================================================
+
+[FILE] Reading: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Total chats in file: 631
+[OK] Found test chat: test_deep_research_20260206_144443
+
+[VERIFY] Chat structure:
+  - type: deep_research
+  - model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+  - query: MKM Research Labs, David Kelly and Johnny Mattimor...
+  - messages: 2
+    - user messages: 1
+    - synthesis messages: 1
+    - KB result messages: 0
+  - kb_results array: 7 entries
+  - synthesized_answer: 173 chars
+  - total_sources: 0
+  - total_time_ms: 21532
+
+[OK] All chat data verified in all_chats.json
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+Results:
+  - Knowledge bases queried: 7
+  - Total sources found: 0
+  - Total time: 21532ms
+  - KBs with results: 0
+
+Chat Persistence:
+  - Chat ID: test_deep_research_20260206_144443
+  - Saved to: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+  - Contains: synthesized answer + individual KB results
+
+Output Files:
+  - JSON results: tests/results/deep_research_*.json
+  - Test log: tests/results/test_run_deep_research_*.log
+
+======================================================================
+[OK] DEEP RESEARCH TEST COMPLETE
+======================================================================
+
+Note: Test chat is PRESERVED in all_chats.json for review.
+
+[SAVED] Research results saved to: /Users/newdavid/Documents/MKMChat/tests/results/deep_research_20260206_144444.json
+
+[KEPT] Test chat preserved in all_chats.json: test_deep_research_20260206_144443
+       To delete manually, use: DELETE /delete_chat/{chat_id}
+
+============================================================
+CHECKING CONFIGURATION FILES
+============================================================
+ Static directory: /Users/newdavid/Documents/MKMChat/static
+ Templates directory: /Users/newdavid/Documents/MKMChat/templates
+ Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+
+Collection Summary Files:
+   misc: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+   phys: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_phys.json
+   pops: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_pops.json
+   hist: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_hist.json
+   mods: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_mods.json
+   corp: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_corp.json
+   back: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_back.json
+
+============================================================
+CHECKING FAISS INDICES
+============================================================
+ misc (Miscellaneous): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/misc
+ phys (Physical): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/phys
+ pops (Parenting): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/pops
+ hist (History): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/hist
+ mods (Models): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/mods
+ corp (Corporate): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/corp
+ back (backgammon): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/back
+
+============================================================
+CHECKING API KEYS
+============================================================
+ Anthropic API key set (length: 108)
+ Perplexity API key set (length: 53)
+
+============================================================
+CHECKING LM STUDIO CONNECTION
+============================================================
+URL: http://localhost:1234/v1/chat/completions
+ LM Studio is running and reachable
+   Available models: 5
+     - text-embedding-nomic-embed-text-v1.5
+     - bitnet-b1.58-2b-4t
+     - cogito-v1-preview-llama-3b
+
+============================================================
+TESTING VECTOR STORE QUERY
+============================================================
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+ Vector store loaded
+ Query returned 2 documents
+   First result source: Clean Architecture (Robert C. Martin).pdf
+
+============================================================
+SIMULATING FULL QUERY FLOW
+============================================================
+
+Steps passed:
+  App instantiation
+  Vector store loaded
+  Similarity search (2 results)
+  Local model handler ready
+
+ All steps passed!
+   If you still get 500 errors, the issue is likely:
+   - LM Studio not running (for local models)
+   - API key invalid (for cloud models)
+   - Network connectivity issues
+
+============================================================
+ENDPOINT DIAGNOSTICS
+============================================================
+ GET /: 200
+ GET /get_available_indices: 200
+ GET /get_available_models: 200
+ GET /get_chat_history: 200
+[DEBUG] get_summaries called with docs_type: misc
+[DEBUG] All query params: {'docs_type': 'misc'}
+[DEBUG] Available collections: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+[DEBUG] Loading summaries from: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+[SUCCESS] Loaded 73 summaries for misc
+ GET /get_summaries?docs_type=misc: 200
+
+============================================================
+Processing query: test
+Model: mistral-7b-instruct-v0.2
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 8769 characters
+Calling model: mistral-7b-instruct-v0.2
+Sending request to LM Studio (truncated for log)...
+LM Studio error: 400 - {'error': {'message': "No models loaded. Please load a model in the developer page or use the 'lms load' command.", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}
+Response generated: 228 characters
+ POST /query: 200
+ POST /switch_index: 200
+ POST /analyze_sources: 200
+No supported files found in /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpr6s1v74w/docs.
+Supported formats: .pdf, .epub, .docx, .doc, .pptx, .ppt, .xlsx, .xls
+
+Processing test.pdf from misc...
+Generated 1 chunks from test.pdf
+Setting up alternative embedding model...
+Successfully set up alternative embeddings
+No error files found in /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpqjzwxrgm/processed.json
+
+Running diagnostics on 1 problematic files...
+Diagnosing file1.pdf...
+  Assessment: problematic
+  Issues: encoding
+  Recommendation: ocr
+
+Diagnostic report saved to /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpkxl59yhb/pdf_diagnostic_report_misc.json
+Directory not found: /nonexistent/dir
+Error parsing JSON file /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmp7m68hgoy/invalid.json: Expecting value: line 1 column 1 (char 0)
+Error processing Word document /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpk4kx5d3c/test.docx: File is not a zip file
+Primary PDF loading method failed: File path /nonexistent/file.pdf is not a valid file or url
+Attempting first fallback method with PyPDF2...
+First fallback method failed: [Errno 2] No such file or directory: '/nonexistent/file.pdf'
+Attempting second fallback method with pdfplumber...
+Second fallback method failed: [Errno 2] No such file or directory: '/nonexistent/file.pdf'
+Attempting binary-safe extraction method...
+Binary-safe extraction completely failed: [Errno 2] No such file or directory: '/nonexistent/file.pdf'
+Attempting OCR fallback with pdf2image and pytesseract...
+OCR extraction failed: Unable to get page count.
+I/O Error: Couldn't open file '/nonexistent/file.pdf': No such file or directory.
+
+Primary PDF loading method failed: Stream has ended unexpectedly
+Attempting first fallback method with PyPDF2...
+First fallback method failed: EOF marker not found
+Attempting second fallback method with pdfplumber...
+Second fallback method failed: No /Root object! - Is this really a PDF?
+Attempting binary-safe extraction method...
+Binary-safe extraction completely failed: EOF marker not found
+Attempting OCR fallback with pdf2image and pytesseract...
+OCR extraction failed: Unable to get page count.
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't read xref table
+
+Error processing Excel document /nonexistent/file.xlsx: [Errno 2] No such file or directory: '/nonexistent/file.xlsx'
+Error processing EPUB file: [Errno 2] No such file or directory: '/nonexistent/file.epub'
+Error processing PowerPoint document /nonexistent/file.pptx: Package not found at '/nonexistent/file.pptx'
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+LM Studio error: 500 - Internal Server Error
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: test context\n\nQuestion: test query'}], 'temperature': 0.7, 'max_tokens': 1000}
+
+[OK] Chats directory exists: /Users/newdavid/Documents/MKMChat/src/json
+
+[OK] Generated embedding with 384 dimensions
+
+[INFO] Loading embedding model: all-MiniLM-L6-v2
+[OK] Embedding model loaded successfully
+
+[INFO] Available indices: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+
+[EXISTS] Index 'misc': /Users/newdavid/Documents/MKMChat/faiss/misc
+
+[EXISTS] Index 'phys': /Users/newdavid/Documents/MKMChat/faiss/phys
+
+[EXISTS] Index 'pops': /Users/newdavid/Documents/MKMChat/faiss/pops
+
+[EXISTS] Index 'hist': /Users/newdavid/Documents/MKMChat/faiss/hist
+
+[EXISTS] Index 'mods': /Users/newdavid/Documents/MKMChat/faiss/mods
+
+[EXISTS] Index 'corp': /Users/newdavid/Documents/MKMChat/faiss/corp
+
+[EXISTS] Index 'back': /Users/newdavid/Documents/MKMChat/faiss/back
+
+[OK] Anthropic API key configured (length: 108)
+
+[OK] LM Studio is reachable
+
+[INFO] LM Studio URL: http://localhost:1234/v1/chat/completions
+
+[OK] Perplexity API key configured (length: 53)
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+
+[OK] Default index 'misc' loaded successfully
+Created empty file: /var/folders/dq/hdkqzjj11qx6f053f49pkh900000gp/T/tmpqpjnxu2m/new_file.json
+
+[TEST] Selenium availability...
+  [OK] Selenium is installed
+
+[TEST] Flask server running...
+  [FAIL] Server not running at http://localhost:5000
+         Start with: python run.py -web-only
+
+[TEST] WebDriver Manager availability...
+  [OK] webdriver-manager is installed
+
+======================================================================
+TEST SUMMARY
+======================================================================
+Tests run: 237
+Failures: 0
+Errors: 0
+Skipped: 6
+Time elapsed: 328.24s
+======================================================================
+✅ ALL TESTS PASSED
+
+======================================================================
+JAVASCRIPT TEST SUITE (Jest)
+Started: 2026-02-06 14:49:00
+======================================================================
+
+> mkmchat@1.0.0 test
+> jest
+
+  console.log
+    Research Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:273:13)
+
+  console.log
+    Research Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:273:13)
+
+  console.log
+    Research Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:273:13)
+
+  console.log
+    Research Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:273:13)
+
+  console.log
+    Research Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:273:13)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: { active: 'test' }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    Sending request to server...
+
+      at updateStatus (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:179:19)
+
+  console.log
+    Index loaded in 0.0 seconds
+
+      at updateStatus (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:179:19)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    Sending request to server...
+
+      at updateStatus (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:179:19)
+
+  console.log
+    Index loaded in 0.0 seconds
+
+      at updateStatus (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:179:19)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at Object.loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    Sending request to server...
+
+      at updateStatus (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:179:19)
+
+  console.log
+    Index loaded in 0.0 seconds
+
+      at updateStatus (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:179:19)
+
+  console.log
+    [KB] API response: {
+      indices: {
+        misc: { name: 'Miscellaneous' },
+        phys: { name: 'Physics' },
+        hist: { name: 'History' }
+      },
+      active: 'misc'
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:38:17)
+
+  console.log
+    [KB] Setting active KB: {
+      key: 'misc',
+      displayName: 'Miscellaneous',
+      info: { name: 'Miscellaneous' }
+    }
+
+      at loadAvailableKnowledgeBases (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:65:17)
+
+  console.log
+    Visualization Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:197:15)
+
+  console.log
+    Visualization Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:197:15)
+
+  console.log
+    Visualization Manager initialized
+
+      at Object.init (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:197:15)
+
+  console.error
+    Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+        at module.exports (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+        at HTMLCanvasElementImpl.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+        at HTMLCanvasElement.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+        at Object.renderRelevanceDistribution (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:178:24)
+        at renderAllCharts (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:66:27)
+        at Object.visualizeQueryResults (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:171:9)
+        at Object.<anonymous> (/Users/newdavid/Documents/MKMChat/tests/js/modules/visualizations.test.js:145:7) {
+      type: 'not implemented'
+    }
+
+      at VirtualConsole.<anonymous> (node_modules/@jest/environment-jsdom-abstract/build/index.js:87:23)
+      at module.exports (node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+      at HTMLCanvasElementImpl.getContext (node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+      at HTMLCanvasElement.getContext (node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+      at Object.renderRelevanceDistribution (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:178:24)
+      at renderAllCharts (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:66:27)
+      at Object.visualizeQueryResults (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:171:9)
+      at Object.<anonymous> (modules/visualizations.test.js:145:7)
+
+  console.error
+    Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+        at module.exports (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+        at HTMLCanvasElementImpl.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+        at HTMLCanvasElement.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+        at Object.renderSourceDistribution (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:60:24)
+        at renderAllCharts (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:67:27)
+        at Object.visualizeQueryResults (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:171:9)
+        at Object.<anonymous> (/Users/newdavid/Documents/MKMChat/tests/js/modules/visualizations.test.js:145:7) {
+      type: 'not implemented'
+    }
+
+      at VirtualConsole.<anonymous> (node_modules/@jest/environment-jsdom-abstract/build/index.js:87:23)
+      at module.exports (node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+      at HTMLCanvasElementImpl.getContext (node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+      at HTMLCanvasElement.getContext (node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+      at Object.renderSourceDistribution (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:60:24)
+      at renderAllCharts (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:67:27)
+      at Object.visualizeQueryResults (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:171:9)
+      at Object.<anonymous> (modules/visualizations.test.js:145:7)
+
+  console.error
+    Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+        at module.exports (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+        at HTMLCanvasElementImpl.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+        at HTMLCanvasElement.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+        at Object.renderDateDistribution (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:123:24)
+        at renderAllCharts (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:68:27)
+        at Object.visualizeQueryResults (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:171:9)
+        at Object.<anonymous> (/Users/newdavid/Documents/MKMChat/tests/js/modules/visualizations.test.js:145:7) {
+      type: 'not implemented'
+    }
+
+      at VirtualConsole.<anonymous> (node_modules/@jest/environment-jsdom-abstract/build/index.js:87:23)
+      at module.exports (node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+      at HTMLCanvasElementImpl.getContext (node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+      at HTMLCanvasElement.getContext (node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+      at Object.renderDateDistribution (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:123:24)
+      at renderAllCharts (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:68:27)
+      at Object.visualizeQueryResults (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:171:9)
+      at Object.<anonymous> (modules/visualizations.test.js:145:7)
+
+  console.error
+    Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+        at module.exports (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+        at HTMLCanvasElementImpl.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+        at HTMLCanvasElement.getContext (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+        at Object.renderSourceDistribution (eval at loadModule (/Users/newdavid/Documents/MKMChat/tests/js/helpers/loadModule.js:21:10), <anonymous>:60:24)
+        at Object.renderSourceDistribution (/Users/newdavid/Documents/MKMChat/tests/js/modules/visualizations.test.js:227:25)
+        at Promise.finally.completed (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)
+        at _callCircusTest (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)
+        at _runTest (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:947:3)
+        at /Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:849:7
+        at _runTestsForDescribeBlock (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:862:11)
+        at _runTestsForDescribeBlock (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:857:11)
+        at run (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:761:3)
+        at runAndTransformResultsToJestFormat (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)
+        at jestAdapter (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-circus/build/runner.js:101:19)
+        at runTestInternal (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-runner/build/index.js:275:16)
+        at runTest (/Users/newdavid/Documents/MKMChat/tests/js/node_modules/jest-runner/build/index.js:343:7) {
+      type: 'not implemented'
+    }
+
+      at VirtualConsole.<anonymous> (node_modules/@jest/environment-jsdom-abstract/build/index.js:87:23)
+      at module.exports (node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+      at HTMLCanvasElementImpl.getContext (node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+      at HTMLCanvasElement.getContext (node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+      at Object.renderSourceDistribution (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:60:24)
+      at Object.renderSourceDistribution (modules/visualizations.test.js:227:25)
+
+  console.log
+    [UI] KB indicator updated to: Test KB
+
+      at Object.setActiveKnowledgeBase (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:124:17)
+
+  console.log
+    [UI] KB indicator updated to: No KB Selected
+
+      at Object.setActiveKnowledgeBase (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:124:17)
+
+  console.warn
+    No PDF has been generated yet
+
+      at Object.downloadLast (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:338:15)
+      at Object.downloadLast (utils/research_pdf.test.js:116:43)
+
+  console.warn
+    No PDF has been generated yet
+
+      at Object.downloadLast (eval at loadModule (helpers/loadModule.js:21:10), <anonymous>:338:15)
+      at Object.downloadLast (utils/research_pdf.test.js:122:43)
+
+
+PASS modules/research.test.js
+  ResearchManager
+    init
+      ✓ should add research button to form (8 ms)
+      ✓ should create research panel (4 ms)
+    isInProgress
+      ✓ should return false initially (1 ms)
+    getResult
+      ✓ should return null initially
+    showPanel
+      ✓ should make panel visible (3 ms)
+    hidePanel
+      ✓ should hide the panel (3 ms)
+    copySynthesizedAnswer
+      ✓ should show notification when no results (1 ms)
+    downloadPDF
+      ✓ should show notification when no results (1 ms)
+    useInChat
+      ✓ should show notification when no results (1 ms)
+  ResearchPanel
+    ✓ should create panel with required elements (2 ms)
+    ✓ should show and hide panel (4 ms)
+    ✓ should reset panel state (2 ms)
+  ResearchProgress
+    ✓ should initialize progress steps (2 ms)
+    ✓ should update progress bar (1 ms)
+    ✓ should add KB result card (2 ms)
+    ✓ should show synthesis (1 ms)
+    ✓ should add auto status (1 ms)
+
+PASS modules/knowledge.test.js
+  KnowledgeManager
+    init
+      ✓ should load knowledge bases on init (4 ms)
+    loadAvailableKnowledgeBases
+      ✓ should fetch and display knowledge bases (3 ms)
+      ✓ should set active knowledge base indicator (3 ms)
+      ✓ should handle API errors (1 ms)
+      ✓ should handle missing indices in response (1 ms)
+    getActiveKnowledgeBase
+      ✓ should return active knowledge base key (2 ms)
+    getAvailableKnowledgeBases
+      ✓ should return all knowledge bases (2 ms)
+    switchKnowledgeBase
+      ✓ should call API to switch knowledge base (10 ms)
+      ✓ should show notification on success (9 ms)
+      ✓ should update active KB indicator (10 ms)
+
+PASS modules/visualizations.test.js
+  VisualizationManager
+    init
+      ✓ should initialize without errors (2 ms)
+      ✓ should add CSS styles to document (1 ms)
+    attachVisualizationToMessage
+      ✓ should add visualize button to assistant messages
+      ✓ should not add button to user messages (1 ms)
+      ✓ should not add duplicate buttons
+    visualizeQueryResults
+      ✓ should show notification when no messages
+      ✓ should show notification when no sources found (1 ms)
+      ✓ should analyze and visualize when sources exist (9 ms)
+  VisualizationData
+    ✓ should parse sources correctly
+    ✓ should return null for empty sources
+  VisualizationPanel
+    ✓ should create visualization container (2 ms)
+    ✓ should show and hide container (4 ms)
+    ✓ should add visualization button to element (2 ms)
+  VisualizationCharts
+    ✓ should render source distribution chart (4 ms)
+    ✓ should render keyword cloud (3 ms)
+
+PASS modules/modals.test.js
+  ModalManager
+    init
+      ✓ should initialize without errors (2 ms)
+    showDocumentSummary
+      ✓ should set modal title and content (1 ms)
+      ✓ should show the modal
+    showChatPreview
+      ✓ should render chat messages in modal (2 ms)
+      ✓ should set title from first user message (1 ms)
+      ✓ should show the chat preview modal (58 ms)
+      ✓ should handle sources messages (1 ms)
+    isVoiceAvailable
+      ✓ should return true when responsiveVoice is available (1 ms)
+      ✓ should return false when responsiveVoice is not available (2 ms)
+
+PASS ./ui.test.js
+  UI
+    showNotification
+      ✓ should show notification with message (1 ms)
+      ✓ should hide notification after duration (1 ms)
+    toggleSidebar
+      ✓ should collapse sidebar when expanded (1 ms)
+      ✓ should expand sidebar when collapsed
+    createLoadingPlaceholder
+      ✓ should create element with loading-placeholder class
+    createEmptyState
+      ✓ should create element with message (1 ms)
+    setActiveKnowledgeBase
+      ✓ should update indicator text (1 ms)
+      ✓ should show default text when name is null (1 ms)
+    showModal
+      ✓ should add show class to modal
+    hideModal
+      ✓ should remove show class from modal
+    clearContainer
+      ✓ should clear container innerHTML (1 ms)
+    getElement
+      ✓ should return element by selector
+    getAllElements
+      ✓ should return all matching elements
+
+PASS modules/documents.test.js
+  DocumentManager
+    init
+      ✓ should initialize without errors (1 ms)
+    loadDocumentSummaries
+      ✓ should fetch and display document summaries (1 ms)
+      ✓ should use active knowledge base
+      ✓ should show empty state when no documents (1 ms)
+      ✓ should handle API errors
+    showDocumentSummary
+      ✓ should open modal with document summary (1 ms)
+      ✓ should show notification for missing summary (1 ms)
+
+PASS modules/chat.test.js
+  ChatManager
+    init
+      ✓ should initialize without errors (1 ms)
+      ✓ should load last used model (1 ms)
+    getChatMessages
+      ✓ should return empty array initially
+      ✓ should return copy of messages array (1 ms)
+    loadChat
+      ✓ should load chat messages into container (1 ms)
+      ✓ should handle invalid chat object
+      ✓ should handle sources messages (1 ms)
+    clearAutoSave
+      ✓ should not throw when called (1 ms)
+
+PASS ./api.test.js
+  ApiService
+    getEndpoints
+      ✓ should return all endpoint definitions
+    sendQuery
+      ✓ should send POST request with query and model (1 ms)
+      ✓ should throw error on server error (5 ms)
+    saveChat
+      ✓ should send messages with timestamp
+    getChats
+      ✓ should make GET request to get chats endpoint
+    getDocumentSummaries
+      ✓ should make request without params when no knowledge base specified (1 ms)
+      ✓ should include docs_type param when knowledge base specified
+    getResearchStreamUrl
+      ✓ should build correct URL with query and model
+      ✓ should include kb_keys when provided
+    isResearchAvailable
+      ✓ should return true when endpoint exists
+      ✓ should return false when endpoint returns 404 (1 ms)
+      ✓ should return false on network error
+
+PASS utils/research_pdf.test.js
+  ResearchPDFGenerator
+    generate
+      ✓ should return null for null result
+      ✓ should return null for undefined result
+      ✓ should return null for result without kb_results
+      ✓ should return null for result with empty kb_results
+    generateAndDownload
+      ✓ should return false for null result
+      ✓ should return false for invalid result
+    getLastPDF
+      ✓ should return null initially (1 ms)
+    downloadLast
+      ✓ should return false when no PDF has been generated (1 ms)
+      ✓ should return false with filename when no PDF generated (1 ms)
+    clearCache
+      ✓ should clear any cached PDF
+      ✓ should not throw when called multiple times
+
+PASS utils/loader.test.js
+  LoaderUtils
+    init
+      ✓ should create loader element (1 ms)
+      ✓ should have loader-container class (2 ms)
+    show
+      ✓ should add active class to loader
+      ✓ should update message when provided (1 ms)
+      ✓ should add loading class to chat container
+    hide
+      ✓ should remove active class from loader (1 ms)
+      ✓ should remove loading class from chat container
+    isActive
+      ✓ should return true when loader is visible (1 ms)
+      ✓ should return false when loader is hidden
+
+PASS utils/export.test.js
+  ExportUtils
+    formatChatForCopy
+      ✓ should format messages with role headers
+      ✓ should include sources content (1 ms)
+      ✓ should not repeat role header for consecutive same-role messages
+    copyToClipboard
+      ✓ should copy text to clipboard (2 ms)
+      ✓ should handle clipboard errors
+
+PASS utils/audio.test.js
+  AudioUtils
+    initVoicePreferences
+      ✓ should set voice select values from storage
+    stopSpeaking
+      ✓ should cancel speech when playing
+      ✓ should not cancel when not playing
+    formatChatForSpeech
+      ✓ should format messages for speech
+      ✓ should skip sources and error messages
+
+PASS utils/storage.test.js
+  StorageUtils
+    savePreferredVoice
+      ✓ should save voice to localStorage
+    getPreferredVoice
+      ✓ should return saved voice (1 ms)
+      ✓ should return default voice when not set
+    saveLastModel
+      ✓ should save model to localStorage
+    getLastModel
+      ✓ should return saved model
+      ✓ should return default model when not set
+
+Test Suites: 13 passed, 13 total
+Tests:       127 passed, 127 total
+Snapshots:   0 total
+Time:        3.561 s
+Ran all test suites.
+
+
+----------------------------------------------------------------------
+JAVASCRIPT TEST SUMMARY
+----------------------------------------------------------------------
+Test Suites: 13
+Tests passed: 127
+Tests failed: 0
+Time elapsed: 10.43s
+----------------------------------------------------------------------
+✅ ALL JAVASCRIPT TESTS PASSED
+
+[LOG] Test output saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260206_144326.log

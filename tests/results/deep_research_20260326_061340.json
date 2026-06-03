@@ -1,0 +1,90 @@
+{
+  "test_metadata": {
+    "timestamp": "2026-03-26T06:13:40.141637",
+    "query": "MKM Research Labs, David Kelly and Johnny Mattimore",
+    "model": "DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M",
+    "test_chat_id": "test_deep_research_20260326_061339"
+  },
+  "research_result": {
+    "error": null,
+    "kb_results": [
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "misc",
+        "kb_name": "Miscellaneous",
+        "query_time_ms": 56,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "phys",
+        "kb_name": "Physical",
+        "query_time_ms": 4383,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "pops",
+        "kb_name": "Parenting",
+        "query_time_ms": 414,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "hist",
+        "kb_name": "History",
+        "query_time_ms": 1509,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "mods",
+        "kb_name": "Models",
+        "query_time_ms": 3695,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "corp",
+        "kb_name": "Corporate",
+        "query_time_ms": 4599,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error: Could not connect to LM Studio. Please ensure it's running on port 1234.",
+        "kb_key": "back",
+        "kb_name": "backgammon",
+        "query_time_ms": 99,
+        "response": "",
+        "sources": [],
+        "success": false
+      }
+    ],
+    "model": "DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M",
+    "query": "MKM Research Labs, David Kelly and Johnny Mattimore",
+    "success": false,
+    "synthesized_answer": "No relevant information was found across any of the knowledge bases for this query. Please try rephrasing your question or check if the relevant documents have been indexed.",
+    "timestamp": "2026-03-26T06:13:39.162348",
+    "total_sources": 0,
+    "total_time_ms": 14759
+  }
+}

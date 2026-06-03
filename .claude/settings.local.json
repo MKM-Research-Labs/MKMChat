@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/newdavid/Documents/MKMChat/requirements.txt:*)",
+      "Bash(.venv/bin/python -m pytest tests/test_summary/test_storage.py tests/test_file_utils.py tests/test_loaders/test_base_loader.py tests/test_research/test_kb_query.py tests/test_routes/test_summary_routes.py tests/test_analysis_routes.py tests/test_loaders/test_office_loaders.py tests/test_proc/test_document_handler.py -v --tb=short)",
+      "Bash(.venv/bin/python -m pytest tests/test_research/test_kb_query.py::test_query_kb_non_string_response tests/test_analysis_routes.py::TestAnalysisRoutes::test_analyze_sources_exception tests/test_analysis_routes.py::TestAnalysisRoutes::test_analyze_sources_archive_date_group -v --tb=short)",
+      "Bash(pip install:*)",
+      "Bash(python chat.py -test --audit)",
+      "Bash(open /Users/newdavid/Documents/MKMChat/data/output/audit/full_audit_report.pdf /Users/newdavid/Documents/MKMChat/data/output/audit/large_file_report.pdf /Users/newdavid/Documents/MKMChat/data/output/audit/hardcoding_report.pdf /Users/newdavid/Documents/MKMChat/data/output/audit/code_duplication_report.pdf)",
+      "Bash(python -c \":*)",
+      "Bash(python chat.py --audit)"
+    ]
+  }
+}

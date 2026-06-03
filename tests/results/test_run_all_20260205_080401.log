@@ -1,0 +1,499 @@
+[LOG] Output being saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260205_080401.log
+
+======================================================================
+MKM RESEARCH TEST SUITE
+Started: 2026-02-05 08:04:01
+Pattern: test_*.py
+======================================================================
+
+============================================================
+API COMPARISON TEST
+============================================================
+
+[ANTHROPIC] Testing...
+  [OK] 1.67s
+
+[PERPLEXITY] Testing...
+  [OK] 1.55s
+
+[LM STUDIO] Testing...
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: \n\nQuestion: In one sentence, what is machine learning?'}], 'temperature': 0.7, 'max_tokens': 1000}
+  [OK] 9.76s
+
+============================================================
+RESULTS COMPARISON
+============================================================
+
+Anthropic (Claude):
+  Status: SUCCESS
+  Time: 1.67s
+  Response: Machine learning is a branch of artificial intelligence where computers learn patterns from data to make predictions or decisions without being explic...
+
+Perplexity (Sonar):
+  Status: SUCCESS
+  Time: 1.55s
+  Response: **Machine learning is a subfield of artificial intelligence that enables computers to learn and make predictions or decisions from data using algorith...
+
+LM Studio (DeepSeek):
+  Status: SUCCESS
+  Time: 9.76s
+  Response: <think>
+Okay, so I need to figure out what machine learning is in a simple way. Let me start by recalling what I know about it.
+
+From what I remember,...
+
+[SUMMARY] 3/3 APIs working
+
+============================================================
+ANTHROPIC API TEST
+============================================================
+API URL: https://api.anthropic.com/v1/messages
+API Key: SET (length: 108)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (sk-ant-...)
+
+[TEST] Checking handler instantiation...
+[OK] AnthropicHandler instantiated
+
+[TEST] Making API call to Claude Sonnet...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 1.67s
+[OK] Got response (1 chars)
+[RESPONSE] 4...
+[OK] Response appears correct (contains '4')
+
+============================================================
+LM STUDIO API TEST
+============================================================
+API URL: http://localhost:1234/v1/chat/completions
+
+[TEST] Checking LM Studio connectivity...
+[OK] LM Studio is reachable
+[INFO] Available models: 5
+  - deepseek-r1-distill-qwen-1.5b
+  - text-embedding-nomic-embed-text-v1.5
+  - bitnet-b1.58-2b-4t
+  - cogito-v1-preview-llama-3b
+  - mistral-7b-instruct-v0.2
+
+[TEST] Making API call to DeepSeek...
+Query: 'What is 2+2? Reply with just the number.'
+Sending request to LM Studio: {'messages': [{'role': 'system', 'content': 'You are a helpful assistant that answers questions based on the provided context.'}, {'role': 'user', 'content': 'Context: This is a simple math test.\n\nQuestion: What is 2+2? Reply with just the number.'}], 'temperature': 0.7, 'max_tokens': 1000}
+[TIME] Response time: 6.66s
+[OK] Got response (1459 chars)
+[RESPONSE] <think>
+Okay, so I have this question here: "What is 2+2?" And I need to reply with just the number. Alright, let me break this down step by step.
+
+First, I know that addition is one of the basic arithmetic operations. It involves combining two or more numbers together to get a single value, which i...
+
+============================================================
+PERPLEXITY API TEST
+============================================================
+API URL: https://api.perplexity.ai/chat/completions
+API Key: SET (length: 53)
+
+[TEST] Checking API key configuration...
+[OK] API key has correct format (pplx-...)
+
+[TEST] Checking handler instantiation...
+[OK] PerplexityHandler instantiated
+
+[TEST] Making API call to Sonar Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 1.75s
+[OK] Got response (4 chars)
+[RESPONSE] 4[5]...
+[OK] Response appears correct (contains '4')
+
+[TEST] Making API call to Sonar Reasoning Pro...
+Query: 'What is 2+2? Reply with just the number.'
+[TIME] Response time: 3.74s
+[OK] Got response (7 chars)
+[RESPONSE] 4[1][5]...
+
+[INFO] Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Using model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[OK] Model is valid
+
+============================================================
+TEST: Initial State
+============================================================
+[API] Current chat count: 624
+[FILE] Current chat count: 624
+
+============================================================
+TEST: Normal Query with Deepseek
+============================================================
+[QUERY] Sending to /query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+============================================================
+Processing query: What is clean architecture?
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 3227 characters
+Calling model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Sending request to LM Studio (truncated for log)...
+Response generated: 5413 characters
+[TIME] Query took 19.41s
+[STATUS] Response: 200
+[OK] Got response (5413 chars)
+[OK] Sources: 5
+[OK] Knowledge base: misc
+
+============================================================
+TEST: Save Normal Chat
+============================================================
+[INFO] Initial chat count: 624
+[SAVE] Saving chat with ID: test_normal_20260205_080503
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'knowledge_base', 'messages', 'model', 'sources', 'timestamp', 'title', 'type']
+Attempting to save chat with ID: test_normal_20260205_080503
+Chat created: test_normal_20260205_080503
+Successfully saved chat: test_normal_20260205_080503
+[OK] Chat saved successfully
+[INFO] New chat count: 625
+[OK] Verified chat exists in all_chats.json
+
+============================================================
+TEST: Research Query with Deepseek
+============================================================
+[QUERY] Sending to /research_query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[INFO] This queries ALL knowledge bases - may take a while...
+
+============================================================
+RESEARCH QUERY (Streaming): What is clean architecture?...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc
+============================================================
+
+[1/1] Querying misc...
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2811
+  Model response preview: <think>
+Alright, I need to figure out what "clean architecture" means based on the provided context....
+  ✓ Miscellaneous: 20 docs, 12027ms
+
+Synthesizing responses from 1 knowledge bases...
+Sending request to LM Studio (truncated for log)...
+
+============================================================
+Research complete: 20 total sources, 15411ms
+============================================================
+
+[TIME] Research query took 15.43s
+[STATUS] Response: 200
+[OK] Got synthesized answer (877 chars)
+[OK] Total sources: 20
+[OK] KB results: 1
+      Miscellaneous: 20 docs
+
+============================================================
+TEST: Save Research Chat
+============================================================
+[INFO] Initial chat count: 625
+[SAVE] Saving research chat with ID: test_research_20260205_080519
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_research_20260205_080519
+Chat created: test_research_20260205_080519
+Successfully saved chat: test_research_20260205_080519
+[OK] Research chat saved successfully
+[INFO] New chat count: 626
+[OK] Verified research chat exists in all_chats.json
+[OK] Chat type correctly saved as 'research'
+
+============================================================
+TEST: Final Verification
+============================================================
+[INFO] Total chats in file: 626
+
+[FOUND] 2 test chats:
+  - normal: test_normal_20260205_080503
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Normal Chat - What is clean archite...
+  - research: test_research_20260205_080519
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Research Chat - What is clean archi...
+
+[OK] All test chats verified in all_chats.json
+
+[CLEANUP] Removing 2 test chats...
+Chat deleted: test_normal_20260205_080503
+  Deleted: test_normal_20260205_080503
+Chat deleted: test_research_20260205_080519
+  Deleted: test_research_20260205_080519
+
+============================================================
+TEST: ChatService Direct Test
+============================================================
+[INFO] Initial chat count: 624
+Chat created: direct_test_20260205_080519
+[OK] Saved chat: direct_test_20260205_080519
+[OK] Chat count increased: 624 -> 625
+[OK] Retrieved chat by ID
+Chat deleted: direct_test_20260205_080519
+[OK] Deleted test chat
+[OK] Chat count restored: 624
+
+======================================================================
+DEEP RESEARCH FUNCTION TEST
+======================================================================
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+Chats File: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+======================================================================
+
+======================================================================
+STEP 1: Execute Deep Research Query
+======================================================================
+
+[QUERY] 'MKM Research Labs, David Kelly and Johnny Mattimore'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[KBs] Querying ALL 7 knowledge bases...
+
+This will take some time as each KB is queried sequentially.
+
+
+============================================================
+RESEARCH QUERY (Streaming): MKM Research Labs, David Kelly and Johnny Mattimor...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+============================================================
+
+[1/7] Querying misc...
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 1333
+  Model response preview: <think>
+Okay, so I need to figure out what the question is asking. The user provided a context with ...
+  ✓ Miscellaneous: 20 docs, 7249ms
+[2/7] Querying phys...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/phys
+Successfully loaded and cached index: phys
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 4071
+  Model response preview: <think>
+Okay, so I need to figure out who MKM Research Labs is based on the context provided. The us...
+  ✓ Physical: 20 docs, 25943ms
+[3/7] Querying pops...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/pops
+Successfully loaded and cached index: pops
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2555
+  Model response preview: <think>
+Okay, so I'm trying to figure out what MKM Research Labs is based on the provided context. F...
+  ✓ Parenting: 20 docs, 11751ms
+[4/7] Querying hist...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/hist
+Successfully loaded and cached index: hist
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2748
+  Model response preview: <think>
+Alright, I need to figure out whether the provided CV contains any relevant information abou...
+  ✓ History: 20 docs, 13443ms
+[5/7] Querying mods...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/mods
+Successfully loaded and cached index: mods
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2806
+  Model response preview: <think>
+Alright, so I'm trying to figure out who's who in this MKM Research Labs team. From what I s...
+  ✓ Models: 20 docs, 85794ms
+[6/7] Querying corp...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/corp
+Successfully loaded and cached index: corp
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2219
+  Model response preview: <think>
+Okay, so I need to figure out where "MKM Research Labs" is based. From what's given, the mai...
+  ✓ Corporate: 20 docs, 110629ms
+[7/7] Querying back...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/back
+Successfully loaded and cached index: back
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 1107
+  Model response preview: <think>
+Alright, I need to figure out how to respond to the user's question about MKM Research Labs,...
+  ✓ backgammon: 20 docs, 7171ms
+
+Synthesizing responses from 7 knowledge bases...
+Sending request to LM Studio (truncated for log)...
+
+============================================================
+Research complete: 140 total sources, 272339ms
+============================================================
+
+
+[TIME] Total research time: 272.38s
+[STATUS] Response code: 200
+
+[OK] Research query completed successfully
+[INFO] Total sources found: 140
+[INFO] Total time (reported): 272339ms
+
+======================================================================
+STEP 2: Analyze Individual Knowledge Base Results
+======================================================================
+
+[INFO] Received results from 7 knowledge bases
+
+------------------------------------------------------------
+KB 1/7: Miscellaneous (misc)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 7249ms
+  Response length: 1333 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out what the question is asking. The user provided a context with some information about machine learning (LLMs) and management consulting in a book called "International Case Studies." Then they asked about MKM Research Labs, specifically mentioning David Kelly and...
+
+  Source Files:
+    - Management Consulting in Practice Award-winning In
+    - What We Learned from a Year of Building with LLMs 
+    - Systems Thinking for Social Change A Practical Gui
+    ... and 15 more
+
+------------------------------------------------------------
+KB 2/7: Physical (phys)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 25943ms
+  Response length: 4071 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out who MKM Research Labs is based on the context provided. The user has shared a PDF document titled "MKM Research Labs" with several pages containing different sections about various topics like flood risk valuation, physical risk swaps, and other related subjects...
+
+  Source Files:
+    - Flood Risk.pdf
+    - HEC_RAS Model library.pdf
+    - 20250930_MKM_Physical Risk Vendor Opps by Bank Cap
+    - flood_report.pdf
+    - Weather Patterns to Physical Risk Swaps April 2025
+    ... and 15 more
+
+------------------------------------------------------------
+KB 3/7: Parenting (pops)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 11751ms
+  Response length: 2555 chars
+
+  Response Preview:
+  <think> Okay, so I'm trying to figure out what MKM Research Labs is based on the provided context. First, I'll read through the text carefully to see if there's any mention of MKM. Hmm, reading through the paragraphs, I don't see anything about MKM Research Labs directly mentioned. It seems like it'...
+
+  Source Files:
+    - Explaining Creativity The Science of Human Innovat
+    - Your Brain, Explained (Marc Dingman Phd.).epub
+    - Systems Thinking for Social Change A Practical Gui
+    - Understanding And Managing Risk Attitude (David Hi
+    ... and 15 more
+
+------------------------------------------------------------
+KB 4/7: History (hist)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 13443ms
+  Response length: 2748 chars
+
+  Response Preview:
+  <think> Alright, I need to figure out whether the provided CV contains any relevant information about MKM Research Labs, specifically mentioning David Kerr Kelly and Johnny Mattimore. Let's break it down step by step.  First, looking at the history knowledge base, there are two sections: Page 1 and ...
+
+  Source Files:
+    - Lifting the Veil_ An Investigative History of the 
+    - research_physical_hazards_2026-02-02.pdf
+    - CV David Kerr Kelly Jan 2026.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 5/7: Models (mods)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 85794ms
+  Response length: 2806 chars
+
+  Response Preview:
+  <think> Alright, so I'm trying to figure out who's who in this MKM Research Labs team. From what I see, the first document is about Model Risk Governance for Vendors, which seems to be their main focus. It mentions David K Kelly as edited by Johnny Mattimore and Chief Executive Officer. The second d...
+
+  Source Files:
+    - mkm_portfolio_flood.pdf
+    - Model Risk for Smaller Banks.pdf
+    - mkm_portfolio_flood_v2.pdf
+    - mkm_header.pdf
+    - Model Risk Governance for Vendors.pages.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 6/7: Corporate (corp)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 110629ms
+  Response length: 2219 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out where "MKM Research Labs" is based. From what's given, the main focus seems to be on companies called MKM. Their names are Dr. MKM and David K Kelly. They're both co-founders of a company called MKM, which provides innovative consulting solutions for complex fin...
+
+  Source Files:
+    - Business Plan for DeltaCapita.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 7/7: backgammon (back)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 7171ms
+  Response length: 1107 chars
+
+  Response Preview:
+  <think> Alright, I need to figure out how to respond to the user's question about MKM Research Labs, David Kelly and Johnny Mattimore based on the provided backgammon knowledge base.   First, I'll look through the context provided to see if it includes any information relevant to this topic. The kno...
+
+  Source Files:
+    - New Ideas in Backgammon (Kit Woolsey, Hal Heinrich
+    - New Ideas in Backgammon Kit Woolsey Hal Heinrich.p
+    - The Backgammon Encyclopedia Cube reference positio
+    - The Backgammon Encyclopedia Cube reference positio
+    ... and 15 more
+
+============================================================
+KB RESULTS SUMMARY
+============================================================
+  Successful (with results): 7
+    misc, phys, pops, hist, mods, corp, back
+  No relevant documents: 0
+  Failed: 0

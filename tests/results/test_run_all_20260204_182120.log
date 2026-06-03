@@ -1,0 +1,693 @@
+[LOG] Output being saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260204_182120.log
+
+======================================================================
+MKM RESEARCH TEST SUITE
+Started: 2026-02-04 18:21:20
+Pattern: test_*.py
+======================================================================
+
+[INFO] Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Using model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[OK] Model is valid
+
+============================================================
+TEST: Initial State
+============================================================
+[API] Current chat count: 620
+[FILE] Current chat count: 620
+
+============================================================
+TEST: Normal Query with Deepseek
+============================================================
+[QUERY] Sending to /query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+============================================================
+Processing query: What is clean architecture?
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 3227 characters
+Calling model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Sending request to LM Studio (truncated for log)...
+Response generated: 5720 characters
+[TIME] Query took 22.71s
+[STATUS] Response: 200
+[OK] Got response (5720 chars)
+[OK] Sources: 5
+[OK] Knowledge base: misc
+
+============================================================
+TEST: Save Normal Chat
+============================================================
+[INFO] Initial chat count: 620
+[SAVE] Saving chat with ID: test_normal_20260204_182157
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'knowledge_base', 'messages', 'model', 'sources', 'timestamp', 'title', 'type']
+Attempting to save chat with ID: test_normal_20260204_182157
+Chat created: test_normal_20260204_182157
+Successfully saved chat: test_normal_20260204_182157
+[OK] Chat saved successfully
+[INFO] New chat count: 621
+[OK] Verified chat exists in all_chats.json
+
+============================================================
+TEST: Research Query with Deepseek
+============================================================
+[QUERY] Sending to /research_query: 'What is clean architecture?'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[INFO] This queries ALL knowledge bases - may take a while...
+
+============================================================
+RESEARCH QUERY (Streaming): What is clean architecture?...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc
+============================================================
+
+[1/1] Querying misc...
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2448
+  Model response preview: <think>
+Okay, I need to figure out what clean architecture means based on the provided context and o...
+  ✓ Miscellaneous: 20 docs, 9577ms
+
+Synthesizing responses from 1 knowledge bases...
+Sending request to LM Studio (truncated for log)...
+
+============================================================
+Research complete: 20 total sources, 17022ms
+============================================================
+
+[TIME] Research query took 17.03s
+[STATUS] Response: 200
+[OK] Got synthesized answer (2295 chars)
+[OK] Total sources: 20
+[OK] KB results: 1
+      Miscellaneous: 20 docs
+
+============================================================
+TEST: Save Research Chat
+============================================================
+[INFO] Initial chat count: 621
+[SAVE] Saving research chat with ID: test_research_20260204_182214
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_research_20260204_182214
+Chat created: test_research_20260204_182214
+Successfully saved chat: test_research_20260204_182214
+[OK] Research chat saved successfully
+[INFO] New chat count: 622
+[OK] Verified research chat exists in all_chats.json
+[OK] Chat type correctly saved as 'research'
+
+============================================================
+TEST: Final Verification
+============================================================
+[INFO] Total chats in file: 622
+
+[FOUND] 2 test chats:
+  - normal: test_normal_20260204_182157
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Normal Chat - What is clean archite...
+  - research: test_research_20260204_182214
+    Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+    Title: Test Research Chat - What is clean archi...
+
+[OK] All test chats verified in all_chats.json
+
+[CLEANUP] Removing 2 test chats...
+Chat deleted: test_normal_20260204_182157
+  Deleted: test_normal_20260204_182157
+Chat deleted: test_research_20260204_182214
+  Deleted: test_research_20260204_182214
+
+============================================================
+TEST: ChatService Direct Test
+============================================================
+[INFO] Initial chat count: 620
+Chat created: direct_test_20260204_182215
+[OK] Saved chat: direct_test_20260204_182215
+[OK] Chat count increased: 620 -> 621
+[OK] Retrieved chat by ID
+Chat deleted: direct_test_20260204_182215
+[OK] Deleted test chat
+[OK] Chat count restored: 620
+
+======================================================================
+DEEP RESEARCH FUNCTION TEST
+======================================================================
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+Chats File: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+======================================================================
+
+======================================================================
+STEP 1: Execute Deep Research Query
+======================================================================
+
+[QUERY] 'MKM Research Labs, David Kelly and Johnny Mattimore'
+[MODEL] DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+[KBs] Querying ALL 7 knowledge bases...
+
+This will take some time as each KB is queried sequentially.
+
+
+============================================================
+RESEARCH QUERY (Streaming): MKM Research Labs, David Kelly and Johnny Mattimor...
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+Knowledge Bases: misc, phys, pops, hist, mods, corp, back
+============================================================
+
+[1/7] Querying misc...
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2453
+  Model response preview: <think>
+Okay, so I need to figure out what happens when we talk about "MKM Research Labs, David Kell...
+  ✓ Miscellaneous: 20 docs, 10525ms
+[2/7] Querying phys...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/phys
+Successfully loaded and cached index: phys
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2543
+  Model response preview: <think>
+Okay, so I need to figure out how to approach this question about MKM Research Labs, specifi...
+  ✓ Physical: 20 docs, 16078ms
+[3/7] Querying pops...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/pops
+Successfully loaded and cached index: pops
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 1677
+  Model response preview: <think>
+Okay, so I need to figure out how to answer the question based on the provided parentings kn...
+  ✓ Parenting: 20 docs, 9918ms
+[4/7] Querying hist...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/hist
+Successfully loaded and cached index: hist
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2029
+  Model response preview: <think>
+Okay, so I'm trying to figure out how to answer this question about MKM Research Labs. The u...
+  ✓ History: 20 docs, 9641ms
+[5/7] Querying mods...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/mods
+Successfully loaded and cached index: mods
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 2821
+  Model response preview: <think>
+Okay, so I need to figure out who David Kelly, Johnny Mattimore, and myself are based on the...
+  ✓ Models: 20 docs, 68107ms
+[6/7] Querying corp...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/corp
+Successfully loaded and cached index: corp
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 1597
+  Model response preview: <think>
+Okay, so I need to figure out what the user is asking here. They've provided some context ab...
+  ✓ Corporate: 20 docs, 55482ms
+[7/7] Querying back...
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/back
+Successfully loaded and cached index: back
+Sending request to LM Studio (truncated for log)...
+  Model response type: <class 'str'>
+  Model response length: 1339
+  Model response preview: <think>
+Alright, let's tackle this question step by step. The user has provided a detailed context a...
+  ✓ backgammon: 20 docs, 8188ms
+
+Synthesizing responses from 7 knowledge bases...
+Sending request to LM Studio (truncated for log)...
+
+============================================================
+Research complete: 140 total sources, 185245ms
+============================================================
+
+
+[TIME] Total research time: 185.30s
+[STATUS] Response code: 200
+
+[OK] Research query completed successfully
+[INFO] Total sources found: 140
+[INFO] Total time (reported): 185245ms
+
+======================================================================
+STEP 2: Analyze Individual Knowledge Base Results
+======================================================================
+
+[INFO] Received results from 7 knowledge bases
+
+------------------------------------------------------------
+KB 1/7: Miscellaneous (misc)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 10525ms
+  Response length: 2453 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out what happens when we talk about "MKM Research Labs, David Kelly and Johnny Mattimore." Let me start by breaking down the key components here.  First off, "MKM" stands for something related to my knowledge base. From what I remember earlier, it's part of the cont...
+
+  Source Files:
+    - Systems Thinking for Social Change A Practical Gui
+    - Management Consulting in Practice Award-winning In
+    - What We Learned from a Year of Building with LLMs 
+    ... and 15 more
+
+------------------------------------------------------------
+KB 2/7: Physical (phys)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 16078ms
+  Response length: 2543 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out how to approach this question about MKM Research Labs, specifically focusing on David Kelly and Johnny Mattimore based on the provided context. Let me start by reading through the context again carefully.  The first paragraph mentions MKM Research Labs and their...
+
+  Source Files:
+    - 20250930_MKM_Physical Risk Vendor Opps by Bank Cap
+    - Weather Patterns to Physical Risk Swaps April 2025
+    - flood_report.pdf
+    - Flood Risk.pdf
+    - HEC_RAS Model library.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 3/7: Parenting (pops)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 9918ms
+  Response length: 1677 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out how to answer the question based on the provided parentings knowledge base. The question is about "MKM Research Labs, David Kelly and Johnny Mattimore."   First, looking at the context provided, it's a book titled "From Systems Thinking for Social Change: A Prac...
+
+  Source Files:
+    - Understanding And Managing Risk Attitude (David Hi
+    - Systems Thinking for Social Change A Practical Gui
+    - Explaining Creativity The Science of Human Innovat
+    - Your Brain, Explained (Marc Dingman Phd.).epub
+    ... and 15 more
+
+------------------------------------------------------------
+KB 4/7: History (hist)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 9641ms
+  Response length: 2029 chars
+
+  Response Preview:
+  <think> Okay, so I'm trying to figure out how to answer this question about MKM Research Labs. The user provided a CV of David Kerr Kelly, which includes his work experience as founder and Chief Scientific Officer at MKM Research Labs. He also has a history knowledge base that mentions the company u...
+
+  Source Files:
+    - Lifting the Veil_ An Investigative History of the 
+    - research_physical_hazards_2026-02-02.pdf
+    - CV David Kerr Kelly Jan 2026.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 5/7: Models (mods)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 68107ms
+  Response length: 2821 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out who David Kelly, Johnny Mattimore, and myself are based on the given context from the Models Knowledge Base.  First, looking through the pages, there's a header called "Legal Notice." It says MKM Research Labs has exclusive intellectual property rights for all t...
+
+  Source Files:
+    - Model Risk for Smaller Banks.pdf
+    - mkm_portfolio_flood.pdf
+    - Model Risk Governance for Vendors.pages.pdf
+    - mkm_portfolio_flood_v2.pdf
+    - mkm_header.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 6/7: Corporate (corp)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 55482ms
+  Response length: 1597 chars
+
+  Response Preview:
+  <think> Okay, so I need to figure out what the user is asking here. They've provided some context about a business plan document called Business Plan for DeltaCapita.pdf. The question is about MKM Research Labs, involving David Kelly and Johnny Mattimore.  First, looking at the context, in page 27 o...
+
+  Source Files:
+    - Business Plan for DeltaCapita.pdf
+    ... and 15 more
+
+------------------------------------------------------------
+KB 7/7: backgammon (back)
+------------------------------------------------------------
+  Status: SUCCESS
+  Documents found: 20
+  Sources: 20
+  Query time: 8188ms
+  Response length: 1339 chars
+
+  Response Preview:
+  <think> Alright, let's tackle this question step by step. The user has provided a detailed context about Kit Woolsey's backgammon book and some other related materials. They want to know if MKM Research Labs, David Kelly, and Johnny Mattimore are mentioned anywhere in the knowledge base.  First, I n...
+
+  Source Files:
+    - New Ideas in Backgammon (Kit Woolsey, Hal Heinrich
+    - The Backgammon Encyclopedia Cube reference positio
+    - New Ideas in Backgammon Kit Woolsey Hal Heinrich.p
+    - The Backgammon Encyclopedia Cube reference positio
+    ... and 15 more
+
+============================================================
+KB RESULTS SUMMARY
+============================================================
+  Successful (with results): 7
+    misc, phys, pops, hist, mods, corp, back
+  No relevant documents: 0
+  Failed: 0
+
+======================================================================
+STEP 3: Analyze Synthesized Answer
+======================================================================
+
+[INFO] Synthesized answer length: 632 chars
+
+------------------------------------------------------------
+SYNTHESIZED ANSWER:
+------------------------------------------------------------
+<think>
+
+The context provided does not integrate insights from all relevant knowledge bases. While it mentions Kit Woolsey's work on backgammon and other topics, there is no mention of MKM Research Labs, David Kelly, or Johnny Mattimore in this context. The most relevant information comes from the "From What We Learned..." knowledge base, where MKM Research Labs is mentioned as part of a research lab focused on developing driverless technology through LLMs.
+
+In conclusion, none of the provided knowledge bases contain the requested information about MKM Research Labs, David Kelly, and Johnny Mattimore.
+(Based on 20 documents)
+------------------------------------------------------------
+
+[INFO] Query terms found in synthesis: ['MKM', 'Research', 'David', 'Kelly', 'Johnny', 'Mattimore']
+
+======================================================================
+STEP 4: Save Complete Research to all_chats.json
+======================================================================
+
+[INFO] Initial chat count: 620
+
+[SAVE] Saving chat with ID: test_deep_research_20260204_182526
+[INFO] Messages in chat: 9
+[INFO] KB results stored: 7
+
+============================================================
+SAVE CHAT REQUEST RECEIVED
+Content-Type: application/json
+============================================================
+Received chat data: ['id', 'kb_results', 'messages', 'model', 'query', 'success', 'synthesized_answer', 'timestamp', 'title', 'total_sources', 'total_time_ms', 'type']
+Attempting to save chat with ID: test_deep_research_20260204_182526
+Chat created: test_deep_research_20260204_182526
+Successfully saved chat: test_deep_research_20260204_182526
+[OK] Chat saved successfully
+[INFO] New chat count: 621
+
+======================================================================
+STEP 5: Verify Chat Data in all_chats.json
+======================================================================
+
+[FILE] Reading: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+[INFO] Total chats in file: 621
+[OK] Found test chat: test_deep_research_20260204_182526
+
+[VERIFY] Chat structure:
+  - type: deep_research
+  - model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+  - query: MKM Research Labs, David Kelly and Johnny Mattimor...
+  - messages: 9
+    - user messages: 1
+    - synthesis messages: 1
+    - KB result messages: 7
+  - kb_results array: 7 entries
+  - synthesized_answer: 632 chars
+  - total_sources: 140
+  - total_time_ms: 185245
+
+[OK] All chat data verified in all_chats.json
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+
+Query: 'MKM Research Labs, David Kelly and Johnny Mattimore'
+Model: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M
+
+Results:
+  - Knowledge bases queried: 7
+  - Total sources found: 140
+  - Total time: 185245ms
+  - KBs with results: 7
+    (misc, phys, pops, hist, mods, corp, back)
+
+Chat Persistence:
+  - Chat ID: test_deep_research_20260204_182526
+  - Saved to: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+  - Contains: synthesized answer + individual KB results
+
+Output Files:
+  - JSON results: tests/results/deep_research_*.json
+  - Test log: tests/results/test_run_deep_research_*.log
+
+======================================================================
+[OK] DEEP RESEARCH TEST COMPLETE
+======================================================================
+
+Note: Test chat is PRESERVED in all_chats.json for review.
+
+[SAVED] Research results saved to: /Users/newdavid/Documents/MKMChat/tests/results/deep_research_20260204_182527.json
+
+[KEPT] Test chat preserved in all_chats.json: test_deep_research_20260204_182526
+       To delete manually, use: DELETE /delete_chat/{chat_id}
+
+============================================================
+CHECKING CONFIGURATION FILES
+============================================================
+ Static directory: /Users/newdavid/Documents/MKMChat/static
+ Templates directory: /Users/newdavid/Documents/MKMChat/templates
+ Chats file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+
+Collection Summary Files:
+   misc: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+   phys: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_phys.json
+   pops: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_pops.json
+   hist: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_hist.json
+   mods: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_mods.json
+   corp: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_corp.json
+   back: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_back.json
+
+============================================================
+CHECKING FAISS INDICES
+============================================================
+ misc (Miscellaneous): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/misc
+ phys (Physical): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/phys
+ pops (Parenting): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/pops
+ hist (History): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/hist
+ mods (Models): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/mods
+ corp (Corporate): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/corp
+ back (backgammon): ready
+    Path: /Users/newdavid/Documents/MKMChat/faiss/back
+
+============================================================
+CHECKING API KEYS
+============================================================
+ Anthropic API key set (length: 108)
+ Perplexity API key set (length: 53)
+
+============================================================
+CHECKING LM STUDIO CONNECTION
+============================================================
+URL: http://localhost:1234/v1/chat/completions
+ LM Studio is running and reachable
+   Available models: 5
+     - deepseek-r1-distill-qwen-1.5b
+     - text-embedding-nomic-embed-text-v1.5
+     - bitnet-b1.58-2b-4t
+
+============================================================
+TESTING VECTOR STORE QUERY
+============================================================
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+ Vector store loaded
+ Query returned 2 documents
+   First result source: Clean Architecture (Robert C. Martin).pdf
+
+============================================================
+SIMULATING FULL QUERY FLOW
+============================================================
+
+Steps passed:
+  App instantiation
+  Vector store loaded
+  Similarity search (2 results)
+  Local model handler ready
+
+ All steps passed!
+   If you still get 500 errors, the issue is likely:
+   - LM Studio not running (for local models)
+   - API key invalid (for cloud models)
+   - Network connectivity issues
+
+============================================================
+ENDPOINT DIAGNOSTICS
+============================================================
+ GET /: 200
+ GET /get_available_indices: 200
+ GET /get_available_models: 200
+ GET /get_chat_history: 200
+[DEBUG] get_summaries called with docs_type: misc
+[DEBUG] All query params: {'docs_type': 'misc'}
+[DEBUG] Available collections: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+[DEBUG] Loading summaries from: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+[SUCCESS] Loaded 73 summaries for misc
+ GET /get_summaries?docs_type=misc: 200
+
+============================================================
+Processing query: test
+Model: mistral-7b-instruct-v0.2
+Active index: misc
+============================================================
+
+Searching for relevant documents...
+Found 5 relevant documents
+Context length: 8769 characters
+Calling model: mistral-7b-instruct-v0.2
+Sending request to LM Studio (truncated for log)...
+Response generated: 3999 characters
+ POST /query: 200
+ POST /switch_index: 200
+ POST /analyze_sources: 200
+
+[OK] Chats directory exists: /Users/newdavid/Documents/MKMChat/src/json
+
+[OK] Generated embedding with 384 dimensions
+
+[INFO] Loading embedding model: all-MiniLM-L6-v2
+[OK] Embedding model loaded successfully
+
+[INFO] Available indices: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+
+[EXISTS] Index 'misc': /Users/newdavid/Documents/MKMChat/faiss/misc
+
+[EXISTS] Index 'phys': /Users/newdavid/Documents/MKMChat/faiss/phys
+
+[EXISTS] Index 'pops': /Users/newdavid/Documents/MKMChat/faiss/pops
+
+[EXISTS] Index 'hist': /Users/newdavid/Documents/MKMChat/faiss/hist
+
+[EXISTS] Index 'mods': /Users/newdavid/Documents/MKMChat/faiss/mods
+
+[EXISTS] Index 'corp': /Users/newdavid/Documents/MKMChat/faiss/corp
+
+[EXISTS] Index 'back': /Users/newdavid/Documents/MKMChat/faiss/back
+
+[OK] Anthropic API key configured (length: 108)
+
+[OK] LM Studio is reachable
+
+[INFO] LM Studio URL: http://localhost:1234/v1/chat/completions
+
+[OK] Perplexity API key configured (length: 53)
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+
+[OK] Default index 'misc' loaded successfully
+
+======================================================================
+TEST SUMMARY
+======================================================================
+Tests run: 66
+Failures: 0
+Errors: 0
+Skipped: 0
+Time elapsed: 430.99s
+======================================================================
+✅ ALL TESTS PASSED
+
+[LOG] Test output saved to: /Users/newdavid/Documents/MKMChat/tests/results/test_run_all_20260204_182120.log
+
+======================================================================
+STARTING APPLICATION
+======================================================================
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/misc
+Successfully loaded and cached index: misc
+✓ Research routes registered
+Starting server...
+Available FAISS indices:
+  - misc: Miscellaneous (/Users/newdavid/Documents/MKMChat/faiss/misc)
+  - phys: Physical (/Users/newdavid/Documents/MKMChat/faiss/phys)
+  - pops: Parenting (/Users/newdavid/Documents/MKMChat/faiss/pops)
+  - hist: History (/Users/newdavid/Documents/MKMChat/faiss/hist)
+  - mods: Models (/Users/newdavid/Documents/MKMChat/faiss/mods)
+  - corp: Corporate (/Users/newdavid/Documents/MKMChat/faiss/corp)
+  - back: backgammon (/Users/newdavid/Documents/MKMChat/faiss/back)
+Default active index: misc
+Template directory: /Users/newdavid/Documents/MKMChat/src/templates
+Static directory: /Users/newdavid/Documents/MKMChat/src/static
+Chat history file: /Users/newdavid/Documents/MKMChat/src/json/all_chats.json
+Available models: ['cogito-v1-preview-llama-3b', 'DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M', 'sonar-pro', 'sonar-reasoning-pro', 'claude-sonnet-4-5-20250929']
+
+Registered routes:
+  static: /static/<path:filename> [GET]
+  index: / [GET]
+  summary.get_summaries: /get_summarised_files [GET]
+  summary.get_summaries: /get_summaries [GET]
+  summary.get_chat_history: /get_chats [GET]
+  summary.get_chat_history: /get_chat_history [GET]
+  summary.save_chat: /save_chat [POST]
+  summary.delete_chat: /delete_chat/<chat_id> [DELETE]
+  chat.query: /query [POST]
+  index.get_available_indices: /get_available_indices [GET]
+  index.get_available_models: /get_available_models [GET]
+  index.switch_index: /switch_index [POST]
+  analysis.analyze_sources: /analyze_sources [POST]
+  research_query: /research_query [POST]
+  research_query_stream: /research_query_stream [GET,POST]
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/phys
+Loading FAISS index from: /Users/newdavid/Documents/MKMChat/faiss/phys[DEBUG] get_summaries called with docs_type: misc
+
+[DEBUG] get_summaries called with docs_type: misc
+[DEBUG] All query params: {'docs_type': 'misc'}[DEBUG] All query params: {'docs_type': 'misc'}
+[DEBUG] Available collections: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+[DEBUG] Available collections: ['misc', 'phys', 'pops', 'hist', 'mods', 'corp', 'back']
+
+[DEBUG] Loading summaries from: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+[DEBUG] Loading summaries from: /Users/newdavid/Documents/MKMChat/src/json/summarised_files_misc.json
+[SUCCESS] Loaded 73 summaries for misc[SUCCESS] Loaded 73 summaries for misc
+

@@ -1,0 +1,90 @@
+{
+  "test_metadata": {
+    "timestamp": "2026-02-06T14:28:10.573074",
+    "query": "MKM Research Labs, David Kelly and Johnny Mattimore",
+    "model": "DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M",
+    "test_chat_id": "test_deep_research_20260206_142809"
+  },
+  "research_result": {
+    "error": null,
+    "kb_results": [
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "misc",
+        "kb_name": "Miscellaneous",
+        "query_time_ms": 645,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "phys",
+        "kb_name": "Physical",
+        "query_time_ms": 5512,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "pops",
+        "kb_name": "Parenting",
+        "query_time_ms": 390,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "hist",
+        "kb_name": "History",
+        "query_time_ms": 210,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "mods",
+        "kb_name": "Models",
+        "query_time_ms": 6728,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "corp",
+        "kb_name": "Corporate",
+        "query_time_ms": 46200,
+        "response": "",
+        "sources": [],
+        "success": false
+      },
+      {
+        "doc_count": 20,
+        "error": "Error from local model: LM Studio error: 400 - {'error': {'message': \"No models loaded. Please load a model in the developer page or use the 'lms load' command.\", 'type': 'invalid_request_error', 'param': 'model', 'code': None}}",
+        "kb_key": "back",
+        "kb_name": "backgammon",
+        "query_time_ms": 1882,
+        "response": "",
+        "sources": [],
+        "success": false
+      }
+    ],
+    "model": "DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M",
+    "query": "MKM Research Labs, David Kelly and Johnny Mattimore",
+    "success": false,
+    "synthesized_answer": "No relevant information was found across any of the knowledge bases for this query. Please try rephrasing your question or check if the relevant documents have been indexed.",
+    "timestamp": "2026-02-06T14:28:08.696138",
+    "total_sources": 0,
+    "total_time_ms": 61572
+  }
+}
