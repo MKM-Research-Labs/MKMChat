@@ -12,3 +12,6 @@
 
 # Editor config (may contain extension API keys)
 .vscode/
+
+# Node dependencies — regenerable via `npm install`, never tracked.
+node_modules/
