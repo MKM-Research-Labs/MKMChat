@@ -122,7 +122,15 @@
       "Bash(/Users/newdavid/Documents/MKMChat/.venv/bin/pytest tests/test_services/test_chat_service.py tests/test_routes/test_summary_routes.py -v --no-header)",
       "Bash(pip list *)",
       "Bash(tesseract --version)",
-      "Bash(pdftoppm -v)"
+      "Bash(pdftoppm -v)",
+      "Bash(python3.12 --version)",
+      "Bash(python3.11 --version)",
+      "Bash(rm -rf .venv)",
+      "Bash(python3.12 -m venv .venv)",
+      "Bash(.venv/bin/python --version)",
+      "Bash(.venv/bin/pip install *)",
+      "Bash(/usr/local/bin/python3.13 --version)",
+      "Bash(/usr/local/bin/python3.13 -m venv .venv)"
     ]
   }
 }

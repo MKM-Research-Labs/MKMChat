@@ -15,3 +15,6 @@
 
 # Node dependencies — regenerable via `npm install`, never tracked.
 node_modules/
+
+# Python virtualenv — regenerable via `pip install -r requirements.txt`, never tracked.
+.venv/
