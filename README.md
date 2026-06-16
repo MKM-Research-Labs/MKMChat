@@ -20,6 +20,9 @@ A document Q&A application powered by Retrieval Augmented Generation (RAG). Quer
 - Python 3.11+
 - An Anthropic API key (for Claude models)
 - Optional: Perplexity API key, LM Studio running locally on port 1234
+- Optional (for OCR on scanned PDFs): `tesseract` and `poppler` system binaries
+  - macOS: `brew install tesseract poppler`
+  - Ubuntu/Debian: `sudo apt install tesseract-ocr poppler-utils`
 
 ## Installation
 

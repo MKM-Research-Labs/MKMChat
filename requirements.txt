@@ -27,6 +27,12 @@ docx2txt
 python-pptx
 openpyxl
 unstructured
+lxml
+
+# OCR fallback for scanned PDFs (also requires the `tesseract` and `poppler` system binaries)
+pdf2image
+pytesseract
+Pillow
 
 # Utilities
 numpy

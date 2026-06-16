@@ -119,7 +119,10 @@
       "Bash(/Users/newdavid/Documents/PhysicalRisk/.venv/bin/python3 --version)",
       "Bash(/Users/newdavid/Documents/PhysicalRisk/venv/bin/python3 --version)",
       "Bash(.venv/bin/python3 -m pytest --ignore=tests/visual --ignore=tests/e2e --tb=short)",
-      "Bash(/Users/newdavid/Documents/MKMChat/.venv/bin/pytest tests/test_services/test_chat_service.py tests/test_routes/test_summary_routes.py -v --no-header)"
+      "Bash(/Users/newdavid/Documents/MKMChat/.venv/bin/pytest tests/test_services/test_chat_service.py tests/test_routes/test_summary_routes.py -v --no-header)",
+      "Bash(pip list *)",
+      "Bash(tesseract --version)",
+      "Bash(pdftoppm -v)"
     ]
   }
 }
