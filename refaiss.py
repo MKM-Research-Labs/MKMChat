@@ -32,6 +32,33 @@ import sys
 import time
 from datetime import datetime
 
+
+def _apply_thread_limit():
+    """Cap CPU threads BEFORE numpy/torch are imported (env vars are only read
+    at import time). Driven by --threads N or the REFAISS_THREADS env var.
+    Pass --threads 1 to keep the machine responsive / run on effectively one core.
+    """
+    n = os.environ.get("REFAISS_THREADS")
+    argv = sys.argv
+    for i, a in enumerate(argv):
+        if a == "--threads" and i + 1 < len(argv):
+            n = argv[i + 1]
+        elif a.startswith("--threads="):
+            n = a.split("=", 1)[1]
+    if not n:
+        return None
+    try:
+        n = max(1, int(n))
+    except ValueError:
+        return None
+    for var in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS",
+                "VECLIB_MAXIMUM_THREADS", "NUMEXPR_NUM_THREADS"):
+        os.environ[var] = str(n)
+    return n
+
+
+_THREAD_LIMIT = _apply_thread_limit()
+
 # Ensure the project root is importable when run as a script.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path:
@@ -62,6 +89,16 @@ class _Tee:
     def flush(self):
         for stream in self._streams:
             stream.flush()
+
+    def isatty(self):
+        # Report the terminal-ness of the primary (console) stream so tqdm and
+        # other TTY-aware code behave correctly.
+        first = self._streams[0]
+        return first.isatty() if hasattr(first, "isatty") else False
+
+    def __getattr__(self, name):
+        # Delegate anything else (encoding, fileno, etc.) to the primary stream.
+        return getattr(self._streams[0], name)
 
 
 def log(message=""):
@@ -159,6 +196,14 @@ def confirm_wipe(collection_code, cfg, doc_count, skip):
 def rebuild(collection_code, batch_size, resume):
     cfg = get_collection_config(collection_code)
 
+    if _THREAD_LIMIT:
+        try:
+            import torch
+            torch.set_num_threads(_THREAD_LIMIT)
+        except Exception:
+            pass
+        log(f"CPU threads capped at {_THREAD_LIMIT}.")
+
     processor = DocumentProcessor(docs_type=collection_code)
     processor.max_documents = batch_size      # one batch per process_documents() call
     processor.show_progress = True
@@ -230,6 +275,9 @@ def main():
                         help="Knowledge base code (e.g. mods). Omit to choose interactively.")
     parser.add_argument("--batch-size", type=int, default=20,
                         help="Documents per batch; FAISS is saved after each (default 20).")
+    parser.add_argument("--threads", type=int, metavar="N",
+                        help="Cap CPU threads (e.g. 1 to run on ~one core and keep the "
+                             "machine responsive). Applied before model load.")
     parser.add_argument("--list", action="store_true",
                         help="List knowledge bases and exit.")
     parser.add_argument("--yes", action="store_true",
