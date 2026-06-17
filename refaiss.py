@@ -159,6 +159,42 @@ def wipe_faiss(collection_code):
         log("  nothing to remove (already clean)")
 
 
+def run_name_cleanup(collection_code, cfg):
+    """Run the KB's document-name cleanup before ingestion.
+
+    Each docs folder ships a cleanup_<kb>.py whose main() renames files on disk
+    to strip download-site tags ("(Z-Library)", "(z-library.sk)", "(1lib.sk)",
+    etc.). Running it BEFORE the rebuild means the cleaned filenames become the
+    FAISS 'source' metadata. This is the same routine chat.py's run_cleanup()
+    invokes, scoped to a single KB — the stripping logic lives in the cleanup
+    file so it stays consistent everywhere.
+    """
+    import importlib.util
+
+    docs_folder = cfg["docs_folder"]
+    module_name = (cfg.get("cleanup_module") or f"cleanup_{collection_code}").split(".")[-1]
+    cleanup_path = os.path.join(docs_folder, f"{module_name}.py")
+
+    if not os.path.exists(cleanup_path):
+        log(f"No name-cleanup script found at {cleanup_path} — skipping cleanup.")
+        return
+
+    log(f"Running document-name cleanup ({os.path.basename(cleanup_path)})...")
+    try:
+        spec = importlib.util.spec_from_file_location(f"_cleanup_{collection_code}", cleanup_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        if hasattr(module, "main"):
+            module.main()
+            log("Name cleanup complete.")
+        else:
+            log(f"WARNING: {cleanup_path} has no main() — nothing run.")
+    except Exception as exc:
+        # Don't abort the whole rebuild over a cleanup hiccup; the rebuild can
+        # still proceed with the current filenames.
+        log(f"WARNING: name cleanup failed ({exc}); continuing with existing filenames.")
+
+
 def confirm_wipe(collection_code, cfg, doc_count, skip):
     """Require the user to type the KB code before a destructive wipe."""
     faiss_dir = cfg["faiss_index"]
@@ -193,8 +229,14 @@ def confirm_wipe(collection_code, cfg, doc_count, skip):
 # ---------------------------------------------------------------------------
 # Main rebuild loop
 # ---------------------------------------------------------------------------
-def rebuild(collection_code, batch_size, resume):
+def rebuild(collection_code, batch_size, resume, clean=True):
     cfg = get_collection_config(collection_code)
+
+    # Clean up document names (strip "(Z-Library)" etc.) before ingestion so the
+    # tidy filenames land in the FAISS metadata. Skip on --resume (names were
+    # already cleaned on the original pass) or when --no-clean is passed.
+    if clean and not resume:
+        run_name_cleanup(collection_code, cfg)
 
     if _THREAD_LIMIT:
         try:
@@ -284,6 +326,9 @@ def main():
                         help="Skip the typed confirmation (for cron/unattended use).")
     parser.add_argument("--resume", action="store_true",
                         help="Do NOT wipe; continue an interrupted rebuild from its tracker.")
+    parser.add_argument("--no-clean", dest="clean", action="store_false",
+                        help="Skip the document-name cleanup (strip '(Z-Library)' etc.) "
+                             "that otherwise runs before ingestion.")
     args = parser.parse_args()
 
     # Tee output to a timestamped log file alongside the json data dir.
@@ -327,7 +372,7 @@ def main():
         if not confirm_wipe(kb, cfg, doc_count, args.yes):
             return 1
 
-    success = rebuild(kb, args.batch_size, args.resume)
+    success = rebuild(kb, args.batch_size, args.resume, clean=args.clean)
     return 0 if success else 1
 
 
