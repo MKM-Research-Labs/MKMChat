@@ -31,7 +31,7 @@ from config import (
     get_all_collections,
 )
 
-ALL_COLLECTION_KEYS = ["misc", "phys", "pops", "hist", "mods", "corp", "back"]
+ALL_COLLECTION_KEYS = ["misc", "phys", "pops", "hist", "mods", "corp", "back", "risk"]
 
 
 # ── PathManager._ensure_directories ─────────────────────────────────────

@@ -167,6 +167,7 @@ class PathManager:
         self.docs_mods_dir = self.docs_root / "mods"
         self.docs_corp_dir = self.docs_root / "corp"
         self.docs_back_dir = self.docs_root / "back"
+        self.docs_risk_dir = self.docs_root / "risk"
 
         # FAISS indices
         self.faiss_misc_dir = self.faiss_root / "misc"
@@ -176,6 +177,7 @@ class PathManager:
         self.faiss_mods_dir = self.faiss_root / "mods"
         self.faiss_corp_dir = self.faiss_root / "corp"
         self.faiss_back_dir = self.faiss_root / "back"
+        self.faiss_risk_dir = self.faiss_root / "risk"
 
         # Templates and static files
         self.templates_dir = self.project_root / "templates"
@@ -190,6 +192,7 @@ class PathManager:
         self.summarised_files_hist = self.json_dir / "summarised_files_hist.json"
         self.summarised_files_corp = self.json_dir / "summarised_files_corp.json"
         self.summarised_files_back = self.json_dir / "summarised_files_back.json"
+        self.summarised_files_risk = self.json_dir / "summarised_files_risk.json"
         self.summarised_files_main = self.json_dir / "summarised_files.json"
 
         # Processing files (now in json subdirectory)
@@ -200,7 +203,8 @@ class PathManager:
         self.processed_files_mods = self.json_dir / "proc_files_mods.json"
         self.processed_files_corp = self.json_dir / "proc_files_corp.json"
         self.processed_files_back = self.json_dir / "proc_files_back.json"
-        
+        self.processed_files_risk = self.json_dir / "proc_files_risk.json"
+
         # Ensure critical directories exist
         self._ensure_directories()
 
@@ -218,6 +222,7 @@ class PathManager:
             self.docs_mods_dir,
             self.docs_corp_dir,
             self.docs_back_dir,
+            self.docs_risk_dir,
             self.faiss_misc_dir,
             self.faiss_phys_dir,
             self.faiss_pops_dir,
@@ -225,6 +230,7 @@ class PathManager:
             self.faiss_mods_dir,
             self.faiss_corp_dir,
             self.faiss_back_dir,
+            self.faiss_risk_dir,
             self.templates_dir,
             self.static_dir,
         ]
@@ -247,6 +253,8 @@ class PathManager:
             return self.docs_corp_dir
         elif collection_type == "back":
             return self.docs_back_dir
+        elif collection_type == "risk":
+            return self.docs_risk_dir
         else:
             raise ValueError(f"Unknown collection type: {collection_type}")
 
@@ -266,6 +274,8 @@ class PathManager:
             return self.faiss_corp_dir
         elif collection_type == "back":
             return self.faiss_back_dir
+        elif collection_type == "risk":
+            return self.faiss_risk_dir
         else:
             raise ValueError(f"Unknown collection type: {collection_type}")
 
@@ -285,6 +295,8 @@ class PathManager:
             return self.summarised_files_corp
         elif collection_type == "back":
             return self.summarised_files_back
+        elif collection_type == "risk":
+            return self.summarised_files_risk
         else:
             raise ValueError(f"Unknown collection type: {collection_type}")
 
@@ -304,6 +316,8 @@ class PathManager:
             return self.processed_files_corp
         elif collection_type == "back":
             return self.processed_files_back
+        elif collection_type == "risk":
+            return self.processed_files_risk
         else:
             raise ValueError(f"Unknown collection type: {collection_type}")
 
@@ -400,6 +414,15 @@ CONFIG: Dict[str, Any] = {
             "summary_file": str(paths.summarised_files_back),
             "processed_file": str(paths.processed_files_back),
             "cleanup_module": "data.docs.back.cleanup_back",
+        },
+        "risk": {
+            "name": "Risk",
+            "description": "Risk management and risk research references supporting the risk book",
+            "docs_folder": str(paths.docs_risk_dir),
+            "faiss_index": str(paths.faiss_risk_dir),
+            "summary_file": str(paths.summarised_files_risk),
+            "processed_file": str(paths.processed_files_risk),
+            "cleanup_module": "data.docs.risk.cleanup_risk",
         },
     },
     # Legacy path fields for backward compatibility (misc/phys only)
