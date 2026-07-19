@@ -29,6 +29,7 @@ from datetime import datetime
 import traceback
 
 from config import MODEL_ID, TOP_K_RESULTS
+from src.research.model_router import route_to_model_handler
 
 
 def create_chat_blueprint(app_instance):
@@ -104,13 +105,10 @@ def create_chat_blueprint(app_instance):
             print(f"Context length: {len(context)} characters")
             print(f"Calling model: {model}")
             
-            # Route to appropriate model handler
-            if model in ['sonar', 'sonar-pro', 'sonar-reasoning', 'sonar-reasoning-pro']:
-                response_text = app_instance._handle_perplexity_model(user_query, context, model)
-            elif model in ['claude-sonnet-4.5', 'claude-3-opus']:
-                response_text = app_instance._handle_anthropic_model(user_query, context, model)
-            else:
-                response_text = app_instance._handle_local_model(user_query, context, model)
+            # Route to appropriate model handler (pattern-based, driven by
+            # AVAILABLE_MODELS — handles full model ids like
+            # "claude-sonnet-4-5-20250929", not just short aliases)
+            response_text = route_to_model_handler(app_instance, model, user_query, context)
             
             if not response_text:
                 return jsonify({
