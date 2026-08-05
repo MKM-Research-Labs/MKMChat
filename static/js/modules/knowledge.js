@@ -118,7 +118,7 @@ const KnowledgeManager = (() => {
         kbList.innerHTML = '';
         
         const errorElement = document.createElement('div');
-        errorElement.className = 'p-3 bg-red-100 text-red-800 rounded-lg mt-2';
+        errorElement.className = 'p-3 alert-error rounded-lg mt-2';
         errorElement.innerHTML = `
           <div class="font-semibold mb-2">Error Loading Knowledge Bases</div>
           <div class="text-sm">${error.message}</div>
@@ -158,9 +158,9 @@ const KnowledgeManager = (() => {
             <div class="modal-body">
               <p class="mb-4">Switching to <strong>${displayName}</strong>. This may take a moment as the new index loads.</p>
               <div class="flex justify-center">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 brd-accent"></div>
               </div>
-              <div id="kb-status" class="mt-3 text-sm text-blue-600"></div>
+              <div id="kb-status" class="mt-3 text-sm accent-text"></div>
             </div>
           </div>
         `;
@@ -233,7 +233,7 @@ const KnowledgeManager = (() => {
         // Show error in modal if it still exists
         const kbStatus = document.querySelector('#kb-status');
         if (kbStatus) {
-          kbStatus.className = 'mt-3 text-sm text-red-600';
+          kbStatus.className = 'mt-3 text-sm danger-text';
           kbStatus.textContent = `Error: ${error.message}`;
         }
         

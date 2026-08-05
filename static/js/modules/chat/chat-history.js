@@ -155,7 +155,7 @@ const ChatHistory = (() => {
         chatList.innerHTML = '';
 
         const errorElement = document.createElement('div');
-        errorElement.className = 'p-3 bg-red-100 text-red-800 rounded-lg mt-2';
+        errorElement.className = 'p-3 alert-error rounded-lg mt-2';
         errorElement.textContent = `Error: ${error.message}`;
         chatList.appendChild(errorElement);
       }

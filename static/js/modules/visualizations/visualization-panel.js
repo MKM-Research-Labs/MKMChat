@@ -39,24 +39,24 @@ const VisualizationPanel = (() => {
     // Create container
     vizContainer = document.createElement('div');
     vizContainer.id = 'query-visualization-container';
-    vizContainer.className = 'bg-white rounded-lg shadow-lg p-4 mb-4 hidden';
+    vizContainer.className = 'app-surface rounded-lg p-4 mb-4 hidden';
 
     // Create header
     const header = document.createElement('div');
     header.className = 'mb-6';
     header.innerHTML = `
       <h2 class="text-xl font-bold">Query Analysis: <span id="viz-query-term"></span></h2>
-      <p class="text-gray-600"><span id="viz-result-count"></span> results found</p>
+      <p class="muted-text"><span id="viz-result-count"></span> results found</p>
     `;
 
     // Create tabs
     const tabs = document.createElement('div');
     tabs.className = 'flex border-b mb-4';
     tabs.innerHTML = `
-      <button id="tab-relevance" class="viz-tab active px-4 py-2 border-b-2 border-blue-500 text-blue-600">Relevance</button>
-      <button id="tab-sources" class="viz-tab px-4 py-2 text-gray-500">Sources</button>
-      <button id="tab-dates" class="viz-tab px-4 py-2 text-gray-500">Dates</button>
-      <button id="tab-keywords" class="viz-tab px-4 py-2 text-gray-500">Keywords</button>
+      <button id="tab-relevance" class="viz-tab active px-4 py-2">Relevance</button>
+      <button id="tab-sources" class="viz-tab px-4 py-2">Sources</button>
+      <button id="tab-dates" class="viz-tab px-4 py-2">Dates</button>
+      <button id="tab-keywords" class="viz-tab px-4 py-2">Keywords</button>
     `;
 
     // Create content panels
@@ -79,7 +79,7 @@ const VisualizationPanel = (() => {
         </div>
       </div>
       <div id="panel-keywords" class="viz-panel hidden">
-        <div id="keyword-cloud" class="w-full min-h-32 p-4 bg-gray-100 rounded-lg flex flex-wrap justify-center"></div>
+        <div id="keyword-cloud" class="w-full min-h-32 p-4 surface-2 rounded-lg flex flex-wrap justify-center"></div>
       </div>
     `;
 
@@ -87,14 +87,14 @@ const VisualizationPanel = (() => {
     const footer = document.createElement('div');
     footer.className = 'mt-4 flex justify-between items-center';
     footer.innerHTML = `
-      <button id="close-visualization" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+      <button id="close-visualization" class="action-button">
         Close
       </button>
       <div>
-        <button id="save-visualization" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mr-2">
+        <button id="save-visualization" class="action-button btn-primary mr-2">
           Save Analysis
         </button>
-        <button id="export-visualization" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        <button id="export-visualization" class="action-button">
           Export PDF
         </button>
       </div>
@@ -156,12 +156,10 @@ const VisualizationPanel = (() => {
       tab.addEventListener('click', () => {
         // Update active tab
         document.querySelectorAll('.viz-tab').forEach(t => {
-          t.classList.remove('active', 'border-b-2', 'border-blue-500', 'text-blue-600');
-          t.classList.add('text-gray-500');
-        });
-        tab.classList.add('active', 'border-b-2', 'border-blue-500', 'text-blue-600');
-        tab.classList.remove('text-gray-500');
-
+          t.classList.remove('active');
+          });
+        tab.classList.add('active');
+  
         // Show corresponding panel
         const panelId = `panel-${tab.id.split('-')[1]}`;
         document.querySelectorAll('.viz-panel').forEach(panel => {
@@ -210,7 +208,7 @@ const VisualizationPanel = (() => {
 
     // Create button
     const button = document.createElement('button');
-    button.className = 'visualize-btn absolute top-2 right-2 bg-purple-500 text-white px-2 py-1 rounded text-sm hover:bg-purple-600 transition-colors';
+    button.className = 'visualize-btn absolute top-2 right-2 transition-colors';
     button.textContent = 'Visualize';
     button.onclick = (e) => {
       e.preventDefault();

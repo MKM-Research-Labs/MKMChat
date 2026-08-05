@@ -66,7 +66,7 @@ const DocumentManager = (() => {
           
           // Check summary type for icon
           const summaryType = docInfo.summary_type || 'FULL';
-          const iconClass = summaryType === 'FULL' ? 'text-green-500' : 'text-yellow-500';
+          const iconClass = summaryType === 'FULL' ? 'ok-text' : 'warn-text';
           const iconSymbol = summaryType === 'FULL' ? '✓' : '⚠';
           
           docElement.innerHTML = `
@@ -102,7 +102,7 @@ const DocumentManager = (() => {
         documentList.innerHTML = '';
         
         const errorElement = document.createElement('div');
-        errorElement.className = 'p-3 bg-red-100 text-red-800 rounded-lg mt-2';
+        errorElement.className = 'p-3 alert-error rounded-lg mt-2';
         errorElement.textContent = `Error: ${error.message}`;
         documentList.appendChild(errorElement);
       }

@@ -28,22 +28,22 @@
   }
   
   .message-user {
-    background-color: rgb(219, 234, 254);
+    background-color: var(--accent-soft);
     margin-left: 3rem;
   }
   
   .message-assistant {
-    background-color: rgb(243, 244, 246);
+    background-color: var(--panel-2);
     margin-right: 3rem;
   }
   
   .message-error {
-    background-color: rgb(254, 226, 226);
+    background-color: var(--danger-soft);
   }
   
   .message-sources {
     font-size: 0.75rem;
-    color: rgb(107, 114, 128);
+    color: var(--muted);
     margin-top: 0.5rem;
     margin-right: 3rem;
   }
@@ -74,7 +74,7 @@
   }
   
   .chat-item:hover {
-    background-color: rgb(243, 244, 246);
+    background-color: var(--panel-2);
   }
   
   .chat-item-title {
@@ -83,7 +83,7 @@
   
   .chat-item-time {
     font-size: 0.75rem;
-    color: rgb(107, 114, 128);
+    color: var(--muted);
   }
   
   .chat-item-preview {
@@ -102,7 +102,7 @@
   }
   
   .document-item:hover {
-    background-color: rgb(243, 244, 246);
+    background-color: var(--panel-2);
   }
   
   .document-item-title {
@@ -115,7 +115,7 @@
   
   .document-item-date {
     font-size: 0.75rem;
-    color: rgb(107, 114, 128);
+    color: var(--muted);
   }
   
   /* Knowledge base item */
@@ -128,12 +128,12 @@
   }
   
   .kb-item:hover {
-    background-color: rgb(243, 244, 246);
+    background-color: var(--panel-2);
   }
   
   .kb-item-active {
-    background-color: rgb(219, 234, 254);
-    border-color: rgb(96, 165, 250);
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
   }
   
   .kb-item-name {
@@ -142,17 +142,17 @@
   
   .kb-item-key {
     font-size: 0.75rem;
-    color: rgb(107, 114, 128);
+    color: var(--muted);
   }
   
   .kb-item-active-badge {
-    color: rgb(29, 78, 216);
+    color: var(--accent-hover);
   }
   
   /* Voice selection */
   .voice-select {
     font-size: 0.875rem;
-    border: 1px solid rgb(209, 213, 219);
+    border: 1px solid var(--line);
     border-radius: 0.25rem;
     padding: 0.25rem;
   }
@@ -160,14 +160,23 @@
   .voice-select:focus {
     outline: none;
     ring: 2px;
-    ring-color: rgb(96, 165, 250);
+    ring-color: var(--accent);
   }
 
   /* Visualization button */
   .visualize-btn {
     opacity: 0;
-    transition: opacity 0.2s;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: opacity 0.2s, background-color 0.2s;
   }
+
+  .visualize-btn:hover { background-color: var(--accent-hover); }
 
   .message-wrapper:hover .visualize-btn {
     opacity: 1;
@@ -184,11 +193,15 @@
   /* Visualization tabs */
   .viz-tab {
     position: relative;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
     transition: all 0.2s ease;
   }
 
   .viz-tab.active {
-    font-weight: 500;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
   }
 
   .viz-tab:hover:not(.active) {
@@ -229,7 +242,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: var(--panel);
   }
 
   .chart-loading::after {
@@ -237,7 +250,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    border: 0.25rem solid rgb(59, 130, 246);
+    border: 0.25rem solid var(--accent);
     border-top-color: transparent;
     animation: spin 1s linear infinite;
   }

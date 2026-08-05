@@ -38,7 +38,7 @@
   }
   
   .modal-content {
-    background-color: white;
+    background-color: var(--panel);
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     width: 100%;
@@ -53,7 +53,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    border-bottom: 1px solid rgb(229, 231, 235);
+    border-bottom: 1px solid var(--line);
   }
   
   .modal-body {
@@ -64,20 +64,20 @@
   
   .modal-footer {
     padding: 1rem;
-    border-top: 1px solid rgb(229, 231, 235);
+    border-top: 1px solid var(--line);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
   .close-btn {
-    color: rgb(107, 114, 128);
+    color: var(--muted);
     font-size: 1.5rem;
     transition: color 0.2s;
   }
   
   .close-btn:hover {
-    color: rgb(55, 65, 81);
+    color: var(--text-2);
   }
   
   /* Chat preview modal specific styles */
@@ -88,20 +88,20 @@
   }
   
   .chat-preview-user {
-    background-color: rgb(219, 234, 254);
+    background-color: var(--accent-soft);
   }
   
   .chat-preview-assistant {
-    background-color: rgb(243, 244, 246);
+    background-color: var(--panel-2);
   }
   
   .chat-preview-sources {
     font-size: 0.75rem;
-    color: rgb(107, 114, 128);
+    color: var(--muted);
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
-    background-color: rgb(249, 250, 251);
+    background-color: var(--panel-2);
     border-radius: 0.25rem;
   }
   

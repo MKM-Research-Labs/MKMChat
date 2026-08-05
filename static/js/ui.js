@@ -73,10 +73,8 @@ const UI = (() => {
         getAllElements('.tab-btn').forEach(tab => {
           if (tab.id === tabId) {
             tab.classList.add('active');
-            tab.classList.remove('bg-gray-300');
           } else {
             tab.classList.remove('active');
-            tab.classList.add('bg-gray-300');
           }
         });
         
@@ -109,7 +107,7 @@ const UI = (() => {
        */
       createEmptyState: (message) => {
         const emptyState = document.createElement('div');
-        emptyState.className = 'text-center p-4 text-gray-500';
+        emptyState.className = 'text-center p-4 muted-text';
         emptyState.textContent = message;
         return emptyState;
       },

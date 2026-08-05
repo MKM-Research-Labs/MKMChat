@@ -46,7 +46,7 @@
   left: 50%;
   transform: translateX(-50%);
   border-width: 30px 20px 0 20px;
-  border-color: rgb(59, 130, 246) transparent transparent transparent;
+  border-color: var(--accent) transparent transparent transparent;
   animation: sand-drain-top 2s ease-in-out infinite;
 }
 
@@ -56,7 +56,7 @@
   left: 50%;
   transform: translateX(-50%);
   border-width: 0 20px 30px 20px;
-  border-color: transparent transparent rgb(59, 130, 246) transparent;
+  border-color: transparent transparent var(--accent) transparent;
   animation: sand-fill-bottom 2s ease-in-out infinite;
 }
 
@@ -64,7 +64,7 @@
 .loader-text {
   margin-top: 20px;
   font-size: 14px;
-  color: rgb(75, 85, 99);
+  color: var(--text-2);
   font-weight: 500;
   animation: pulse-text 1.5s ease-in-out infinite;
 }
