@@ -52,16 +52,16 @@
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
-    background-color: rgb(59, 130, 246);
+    background-color: var(--accent);
     color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-size: 0.875rem;
     transition: background-color 0.2s;
   }
-  
+
   .copy-message-btn:hover {
-    background-color: rgb(37, 99, 235);
+    background-color: var(--accent-hover);
   }
   
   /* Chat history item */

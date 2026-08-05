@@ -16,6 +16,34 @@
 
 /* Main CSS file for MKM Research Labs */
 
+/* ---------------------------------------------------------------------------
+   Design tokens — single source of truth for colour, shared with the ModelRisk
+   product so the two read as one family. Light values only for now; a dark set
+   drops in here once the background GIF / Tailwind translucency is retired.
+   --------------------------------------------------------------------------- */
+:root {
+  --panel: #ffffff;
+  --panel-2: #fafafa;
+  --line: #e0e0e0;
+  --line-soft: #eeeeee;
+  --text: #333333;
+  --text-2: #555555;
+  --muted: #888888;
+
+  --accent: #1976d2;
+  --accent-hover: #1565c0;
+  --accent-soft: #e3f2fd;
+  --accent-border: #bbdefb;
+
+  --green: #388e3c;
+  --green-hover: #2e7d32;
+  --amber: #f57c00;
+  --red: #d32f2f;
+  --red-hover: #b71c1c;
+
+  --radius: 0.5rem;
+}
+
 /* General styles */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -47,7 +75,7 @@ body {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    background-color: rgb(34, 197, 94);
+    background-color: var(--green);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
@@ -77,28 +105,29 @@ body {
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
     font-size: 0.875rem;
-    background-color: rgb(209, 213, 219);
-    transition: background-color 0.2s;
+    color: var(--text-2);
+    background-color: var(--panel-2);
+    transition: background-color 0.2s, color 0.2s;
   }
-  
+
   .tab-btn.active {
-    background-color: rgb(59, 130, 246);
+    background-color: var(--accent);
     color: white;
   }
-  
+
   /* Search inputs */
   .search-input {
     width: 100%;
     padding: 0.5rem;
     font-size: 0.875rem;
-    border: 1px solid rgb(209, 213, 219);
-    border-radius: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
   }
-  
+
   .search-input:focus {
     outline: none;
-    ring: 2px;
-    ring-color: rgb(96, 165, 250);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
   }
   
   /* Model select dropdown - ensure visible width */
@@ -106,76 +135,75 @@ body {
     min-width: 180px;
   }
   
-  /* Action buttons */
+  /* ---------------------------------------------------------------------------
+     Unified button system. Three roles, all token-driven:
+       .action-button              → neutral / secondary (default)
+       .action-button.btn-primary  → the one accent action in a context
+       .action-button.btn-danger   → destructive (delete)
+     Layout helpers: .btn-block (full width), .btn-small (compact).
+     Sibling buttons space themselves, so no per-button margins are needed.
+     --------------------------------------------------------------------------- */
   .action-button {
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     font-weight: 500;
-    transition: background-color 0.2s;
-  }
-  
-  .new-chat-btn {
-    background-color: rgb(34, 197, 94);
-    color: white;
-  }
-  
-  .new-chat-btn:hover {
-    background-color: rgb(22, 163, 74);
-  }
-  
-  .submit-btn {
-    background-color: rgb(59, 130, 246);
-    color: white;
-  }
-  
-  .submit-btn:hover {
-    background-color: rgb(37, 99, 235);
-  }
-  
-  .listen-btn {
-    background-color: rgb(168, 85, 247);
-    color: white;
-    margin-right: 0.5rem;
-  }
-  
-  .listen-btn:hover {
-    background-color: rgb(147, 51, 234);
-  }
-  
-  .copy-btn {
-    background-color: rgb(59, 130, 246);
-    color: white;
-    margin-right: 0.5rem;
-  }
-  
-  .copy-btn:hover {
-    background-color: rgb(37, 99, 235);
-  }
-  
-  .export-btn {
-    background-color: rgb(34, 197, 94);
-    color: white;
-    margin-right: 0.5rem;
-  }
-  
-  .export-btn:hover {
-    background-color: rgb(22, 163, 74);
-  }
-  
-  .use-btn, .load-btn {
-    background-color: rgb(234, 179, 8);
-    color: white;
-  }
-  
-  .use-btn:hover, .load-btn:hover {
-    background-color: rgb(202, 138, 4);
+    font-size: 0.875rem;
+    line-height: 1.2;
+    cursor: pointer;
+    color: var(--text);
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
   }
 
-  .delete-btn {
-    background-color: rgb(220, 38, 38);
-    color: white;
+  .action-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
-  .delete-btn:hover {
-    background-color: rgb(185, 28, 28);
+  .action-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .action-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Primary — accent filled. Use one per context. */
+  .btn-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #ffffff;
+  }
+
+  /* Danger — reserved for destructive actions. */
+  .btn-danger {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: #ffffff;
+  }
+
+  .btn-danger:hover {
+    background-color: var(--red-hover);
+    border-color: var(--red-hover);
+    color: #ffffff;
+  }
+
+  /* Layout modifiers */
+  .btn-block { width: 100%; }
+  .btn-small { padding: 0.3rem 0.7rem; font-size: 0.8125rem; }
+
+  /* Group spacing so footers/toolbars don't need per-button margins */
+  .modal-footer .action-button + .action-button,
+  .research-actions .action-button + .action-button {
+    margin-left: 0.5rem;
   }

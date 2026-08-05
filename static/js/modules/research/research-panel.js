@@ -86,9 +86,9 @@ const ResearchPanel = (() => {
           <div id="research-auto-status" class="research-auto-status"></div>
 
           <div class="research-actions">
-            <button id="copy-synthesis" class="action-button copy-btn">📋 Copy</button>
-            <button id="use-in-chat" class="action-button use-btn">💬 Use in Chat</button>
-            <button id="download-pdf" class="action-button export-btn" ${!isPDFGeneratorAvailable() ? 'disabled title="PDF module not loaded"' : ''}>📥 Download PDF</button>
+            <button id="copy-synthesis" class="action-button">📋 Copy</button>
+            <button id="use-in-chat" class="action-button btn-primary">💬 Use in Chat</button>
+            <button id="download-pdf" class="action-button" ${!isPDFGeneratorAvailable() ? 'disabled title="PDF module not loaded"' : ''}>📥 Download PDF</button>
           </div>
         </div>
       </div>

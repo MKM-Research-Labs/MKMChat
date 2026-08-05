@@ -75,7 +75,7 @@
                     <div class="loading-placeholder"></div>
                 </div>
                 <div class="mt-4 pt-4 border-t border-gray-200">
-                    <button id="generate-summaries-btn" class="action-button w-full text-sm bg-blue-500 hover:bg-blue-600 text-white">
+                    <button id="generate-summaries-btn" class="action-button btn-primary btn-block">
                         Generate Summaries
                     </button>
                 </div>
@@ -108,7 +108,7 @@
                                 Loading...
                             </span>
                         </div>
-                        <button id="new-chat" class="action-button new-chat-btn">
+                        <button id="new-chat" class="action-button btn-primary">
                             New Chat
                         </button>
                     </div>
@@ -124,7 +124,7 @@
                             <select id="model-select" class="bg-white border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                                 <!-- Models populated dynamically from /get_available_models -->
                             </select>
-                            <button type="submit" class="action-button submit-btn">
+                            <button type="submit" class="action-button btn-primary">
                                 Send
                             </button>
                         </div>
@@ -160,12 +160,12 @@
                     </select>
                 </div>
                 <div class="flex">
-                    <button id="listen-summary" class="action-button listen-btn">
+                    <button id="listen-summary" class="action-button">
                         <span id="listen-icon">🔊</span> Listen
                     </button>
-                    <button id="copy-summary" class="action-button copy-btn">Copy</button>
-                    <button id="export-summary-pdf" class="action-button export-btn">Export PDF</button>
-                    <button id="use-summary" class="action-button use-btn">Use in Chat</button>
+                    <button id="copy-summary" class="action-button">Copy</button>
+                    <button id="export-summary-pdf" class="action-button">Export PDF</button>
+                    <button id="use-summary" class="action-button btn-primary">Use in Chat</button>
                 </div>
             </div>
         </div>
@@ -194,13 +194,13 @@
                     </select>
                 </div>
                 <div class="flex">
-                    <button id="listen-chat" class="action-button listen-btn">
+                    <button id="listen-chat" class="action-button">
                         <span id="chat-listen-icon">🔊</span> Listen
                     </button>
-                    <button id="copy-chat" class="action-button copy-btn">Copy</button>
-                    <button id="export-chat-pdf" class="action-button export-btn">Export PDF</button>
-                    <button id="load-chat" class="action-button load-btn">Load Chat</button>
-                    <button id="delete-chat" class="action-button delete-btn">Delete</button>
+                    <button id="copy-chat" class="action-button">Copy</button>
+                    <button id="export-chat-pdf" class="action-button">Export PDF</button>
+                    <button id="load-chat" class="action-button btn-primary">Load Chat</button>
+                    <button id="delete-chat" class="action-button btn-danger">Delete</button>
                 </div>
             </div>
         </div>
@@ -240,10 +240,10 @@
                 </div>
             </div>
             <div class="modal-footer justify-end">
-                <button id="cancel-generate-btn" class="action-button bg-gray-300 hover:bg-gray-400 text-gray-800 mr-2">
+                <button id="cancel-generate-btn" class="action-button mr-2">
                     Cancel
                 </button>
-                <button id="confirm-generate-btn" class="action-button bg-green-500 hover:bg-green-600 text-white">
+                <button id="confirm-generate-btn" class="action-button btn-primary">
                     Start Generation
                 </button>
             </div>
