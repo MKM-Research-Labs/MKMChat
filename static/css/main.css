@@ -22,6 +22,7 @@
    drops in here once the background GIF / Tailwind translucency is retired.
    --------------------------------------------------------------------------- */
 :root {
+  --bg: #eef1f5;
   --panel: #ffffff;
   --panel-2: #fafafa;
   --line: #e0e0e0;
@@ -42,12 +43,27 @@
   --red-hover: #b71c1c;
 
   --radius: 0.5rem;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 /* General styles */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  /* Solid token surfaces — replace the old translucent-white-over-GIF panels. */
+  .app-sidebar {
+    background-color: var(--panel);
+    border-right: 1px solid var(--line);
+  }
+
+  .app-surface {
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
   }
   
   /* Animation utilities */
@@ -100,19 +116,51 @@ body {
     max-height: calc(100vh - 100px);
   }
   
-  /* Tab buttons */
-  .tab-btn {
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--text-2);
-    background-color: var(--panel-2);
-    transition: background-color 0.2s, color 0.2s;
+  /* Sidebar tab header — ModelRisk's underline idiom, replacing pill tabs. */
+  .sidebar-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
   }
 
+  .sidebar-tabs {
+    display: flex;
+    gap: 2px;
+  }
+
+  .sidebar-collapse {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0 0 0.5rem;
+    line-height: 1;
+  }
+
+  .sidebar-collapse:hover { color: var(--text); }
+
+  /* Underline tab buttons: muted by default, accent underline when active. */
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px; /* sit the underline on the header's baseline rule */
+    padding: 0.4rem 0.7rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--text); }
+
   .tab-btn.active {
-    background-color: var(--accent);
-    color: white;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 700;
   }
 
   /* Search inputs */
