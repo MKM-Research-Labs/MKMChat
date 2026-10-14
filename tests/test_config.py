@@ -133,6 +133,6 @@ class TestConfigStructure:
         for key in expected_keys:
             assert key in CONFIG, f"Missing expected key '{key}' in CONFIG"
 
-        # Verify collections is a dict with 7 entries
+        # Verify collections is a dict with 8 entries
         assert isinstance(CONFIG["collections"], dict)
-        assert len(CONFIG["collections"]) == 7
+        assert len(CONFIG["collections"]) == 8

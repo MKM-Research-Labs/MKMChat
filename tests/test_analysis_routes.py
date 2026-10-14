@@ -84,9 +84,9 @@ class TestAnalysisRoutes:
     def test_analyze_sources_success(self, analysis_client):
         """Should analyze sources successfully."""
         sources = [
-            {'file': '/Users/newdavid/Documents/MKMChat/docs/doc1_2023.pdf', 'page': '1'},
-            {'file': '/Users/newdavid/Documents/MKMChat/docs/doc2_2020.pdf', 'page': '5'},
-            {'file': '/Users/newdavid/Documents/MKMChat/docs/doc3_2018.pdf', 'page': '2'}
+            {'file': '/Users/newdavid/Github/MKMChat/docs/doc1_2023.pdf', 'page': '1'},
+            {'file': '/Users/newdavid/Github/MKMChat/docs/doc2_2020.pdf', 'page': '5'},
+            {'file': '/Users/newdavid/Github/MKMChat/docs/doc3_2018.pdf', 'page': '2'}
         ]
 
         response = analysis_client.post(
